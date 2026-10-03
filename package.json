@@ -1,4 +1,10 @@
 {
+	"scripts": {
+		"dev:shopify": "shopify theme dev --store=kibria-lab",
+		"dev:css": "npx @tailwindcss/cli -i ./src/input.css -o ./assets/theme.css --watch",
+		"dev": "concurrently -k -n shopify,tailwind -c green,cyan \"pnpm:dev:shopify\" \"pnpm:dev:css\"",
+		"build": "npx @tailwindcss/cli -i ./src/input.css -o ./assets/theme.css --minify"
+	},
 	"devDependencies": {
 		"tailwindcss": "^4.3.3",
 		"@tailwindcss/cli": "^4.3.3",
