@@ -24,6 +24,8 @@
     {% # Social, title, etc. %}
     {% render 'meta-tags' %}
 
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+
     {{ content_for_header }}
   </head>
 
