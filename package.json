@@ -1,0 +1,7 @@
+{
+	"devDependencies": {
+		"tailwindcss": "^4.3.3",
+		"@tailwindcss/cli": "^4.3.3",
+		"concurrently": "^10.0.5"
+	}
+}
