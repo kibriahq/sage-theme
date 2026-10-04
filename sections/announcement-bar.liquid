@@ -1,5 +1,6 @@
 <aside
-  class="w-full bg-secondary-container py-2 px-margin-mobile lg:px-margin text-center text-on-secondary-container font-label-sm text-label-sm tracking-widest uppercase flex items-center justify-center gap-space-xs"
+  class="sticky top-0 z-50 transition-transform duration-300 w-full bg-secondary-container py-2 px-margin-mobile lg:px-margin text-center text-on-secondary-container font-label-sm text-label-sm tracking-widest uppercase flex items-center justify-center gap-space-xs"
+  id="announcement-bar"
 >
   <span class="material-symbols-outlined text-[15px]"> {{ section.settings.announcement_icon }} </span>
   <span>{{ section.settings.announcement_text }}</span>
@@ -24,7 +25,7 @@
     {
       "type": "url",
       "id": "announcement_link",
-      "label": "Announcement link",
+      "label": "Announcement link"
     }
   ]
 }
