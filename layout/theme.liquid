@@ -33,7 +33,7 @@
     />
 
     {% # Load and preload the critical CSS %}
-    {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
+    {% comment %} {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }} {% endcomment %}
     {{ 'base.css' | asset_url | stylesheet_tag }}
 
     {% # Social, title, etc. %}
@@ -41,11 +41,15 @@
 
     {{ 'theme.css' | asset_url | stylesheet_tag }}
 
+    <script src={{ 'main.js' | asset_url }} defer></script>
+
     {{ content_for_header }}
   </head>
 
-  <body>
-    {% sections 'header-group' %}
+  <body class="bg-surface font-body-md text-on-surface antialiased">
+    <div class="fixed left-0 right-0 z-50">
+      {% sections 'header-group' %}
+    </div>
 
     <main>
       {{ content_for_layout }}
