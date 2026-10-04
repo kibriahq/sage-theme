@@ -1,0 +1,31 @@
+<aside
+  class="w-full bg-secondary-container py-2 px-margin-mobile lg:px-margin text-center text-on-secondary-container font-label-sm text-label-sm tracking-widest uppercase flex items-center justify-center gap-space-xs"
+>
+  <span class="material-symbols-outlined text-[15px]"> {{ section.settings.announcement_icon }} </span>
+  <span>{{ section.settings.announcement_text }}</span>
+</aside>
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement_icon",
+      "label": "Announcement icon",
+      "default": "eco"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "Free shipping on orders over $50 | Sustainable packaging & 100% Carbon Neutral"
+    },
+    {
+      "type": "url",
+      "id": "announcement_link",
+      "label": "Announcement link",
+    }
+  ]
+}
+{% endschema %}

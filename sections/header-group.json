@@ -1,0 +1,12 @@
+{
+    "name": "t:sections.header.name",
+    "type": "header",
+    "sections": {
+        "announcement-bar": {
+            "type": "announcement-bar"
+        }
+    },
+    "order": [
+        "announcement-bar"
+    ]
+}

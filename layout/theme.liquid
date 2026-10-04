@@ -45,9 +45,7 @@
   </head>
 
   <body>
-    {% block 'container', tag: 'div' %}
-      {% block 'header' -%}{%- endblock %}
-    {% endblock %}
+    {% sections 'header-group' %}
 
     <main>
       {{ content_for_layout }}
