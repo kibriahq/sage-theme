@@ -41,7 +41,7 @@
 
     {{ 'theme.css' | asset_url | stylesheet_tag }}
 
-    <script src={{ 'main.js' | asset_url }} defer></script>
+    <script src="{{ 'main.js' | asset_url }}" defer></script>
 
     {{ content_for_header }}
   </head>
@@ -55,8 +55,9 @@
       {{ content_for_layout }}
     </main>
 
-    {% block 'container', tag: 'div' %}
-      {% block 'footer' -%}{%- endblock %}
-    {% endblock %}
+    {% section 'footer' %}
+
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js" defer></script>
   </body>
 </html>
