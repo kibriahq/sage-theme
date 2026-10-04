@@ -1,0 +1,98 @@
+<header class="sticky top-10 transition-transform duration-300 w-full bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)]" id="header">
+  <div
+    class="h-20 w-full max-w-7xl mx-auto px-margin-mobile lg:px-margin flex items-center justify-between gap-space-md"
+  >
+    <div class="flex items-center gap-space-sm">
+      {% if section.settings.brand_logo %}
+        <img
+          alt="Verdant Living Brand Logo"
+          class="h-8 w-auto object-contain"
+          src="{{ section.settings.brand_logo | image_url: width: 200 }}"
+        />
+      {% endif %}
+      <span
+        class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-medium"
+      >
+        {{- section.settings.brand_name | default: 'Verdant Living' -}}
+      </span>
+    </div>
+    <nav
+      class="hidden lg:flex items-center gap-space-md px-space-xs"
+      data-active-classes="bg-secondary-container text-on-secondary-container rounded-full"
+    >
+      {% for link in section.settings.menu.links %}
+        <a
+          class="relative px-space-sm py-2 font-label-md text-label-md text-on-surface-variant transition-colors hover:text-primary group"
+          data-path="{{ link.url }}"
+          href="{{ link.url }}"
+        >
+          {{- link.title -}}
+          <span
+            class="absolute bottom-0 left-space-sm right-space-sm h-0.5 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full"
+          >
+          </span
+        ></a>
+      {% endfor %}
+    </nav>
+    <div class="flex items-center gap-space-xs sm:gap-space-sm">
+      <button
+        aria-label="Search catalog"
+        class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors"
+        type="button"
+      >
+        <span class="material-symbols-outlined text-[20px]">search</span></button
+      ><button
+        aria-label="View wishlist"
+        class="relative w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors"
+        type="button"
+      >
+        <span class="material-symbols-outlined text-[20px]">favorite</span
+        ><span
+          class="absolute top-1.5 right-1.5 min-w-[18px] h-[18px] px-1 bg-primary text-on-primary font-label-sm text-[10px] rounded-full flex items-center justify-center font-bold"
+          >2</span
+        ></button
+      ><button
+        aria-label="View shopping cart"
+        class="relative w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors"
+        type="button"
+      >
+        <span class="material-symbols-outlined text-[20px]">local_mall</span
+        ><span
+          class="absolute top-1.5 right-1.5 min-w-[18px] h-[18px] px-1 bg-primary-container text-on-primary-container font-label-sm text-[10px] rounded-full flex items-center justify-center font-bold"
+          >3</span
+        >
+      </button>
+      <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center ml-1">
+        <span
+          class="material-symbols-outlined text-on-primary text-[18px]"
+          >person</span
+        >
+      </div>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "brand_logo",
+      "label": "Brand logo"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name",
+      "default": "Verdant Living"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}
