@@ -144,7 +144,7 @@
 }
 
 /** Header */
-header {
+/* header {
   height: 5rem;
   display: flex;
   align-items: center;
@@ -171,7 +171,7 @@ header .header__menu,
 header .header__icons {
   display: flex;
   gap: 1rem;
-}
+} */
 
 /** Footer */
 footer {
