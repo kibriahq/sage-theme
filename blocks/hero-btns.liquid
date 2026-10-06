@@ -1,0 +1,36 @@
+<div class="flex flex-wrap items-center gap-space-sm pt-2">
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "Hero Buttons",
+  "blocks": [
+    {
+      "type": "icon-btn",
+    },
+    {
+      "type": "secondary-btn"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Buttons",
+      "blocks": [
+        {
+          "type": "icon-btn",
+          "settings": {
+          "btn_text": "Shop Collection"
+          }
+        },
+        {
+          "type": "secondary-btn",
+          "settings": {
+            "btn_text": "Explore Rituals"
+          }
+        }
+      ],
+    }
+  ]
+}
+{% endschema %}
