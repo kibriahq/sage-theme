@@ -1,0 +1,56 @@
+<!-- Floating Top-Right Glass Badge -->
+<div class="absolute top-6 right-6 backdrop-blur-md bg-surface-container-lowest/85 rounded-2xl p-3.5 shadow-lg flex items-center gap-3 transition-transform hover:-translate-y-1">
+  <div
+    class="w-10 h-10 rounded-xl bg-secondary-container flex items-center justify-center text-primary"
+  >
+    <span class="text-[20px]">
+      {{ block.settings.badge_icon }}
+    </span>
+  </div>
+  <div class="flex flex-col">
+    <span class="font-label-sm text-[11px] text-primary tracking-wider uppercase font-bold">
+      {{ block.settings.badge_heading }}
+    </span>
+    <span class="font-label-md text-label-md text-on-surface">{{ block.settings.badge_text }}</span>
+    <span class="font-label-sm text-label-sm text-on-surface-variant font-semibold mt-0.5">
+      {{ block.settings.badge_price }}
+    </span>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Media Badge Top",
+  "settings": [
+    {
+      "type": "html",
+      "id": "badge_icon",
+      "label": "Badge Icon",
+      "default": "<ion-icon name='diamond-outline'></ion-icon>"
+    },
+    {
+      "type": "text",
+      "id": "badge_heading",
+      "label": "Badge Heading",
+      "default": "New Arrival ✨"
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "Hydrating Face Cream"
+    },
+    {
+      "type": "text",
+      "id": "badge_price",
+      "label": "Badge Price",
+      "default": "$48.00"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Media Badge Top"
+    }
+  ]
+}
+{% endschema %}
