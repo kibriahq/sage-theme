@@ -1,0 +1,19 @@
+<div
+  class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-secondary-container/80 text-on-secondary-container font-label-sm text-label-sm tracking-wider uppercase shadow-sm"
+>
+  <span>{{ block.settings.badge_text }}</span>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Badge",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "🌿100% Organic & Ethical"
+    }
+  ]
+}
+{% endschema %}
