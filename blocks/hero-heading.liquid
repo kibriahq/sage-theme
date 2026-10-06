@@ -1,0 +1,26 @@
+<h1
+  class="font-headline-xl text-headline-xl text-on-surface font-medium leading-[1.15] tracking-tight"
+>
+  {{ block.settings.heading_text_line_1 }} <br class="hidden sm:inline" />
+  <span class="italic text-primary font-normal">{{ block.settings.heading_text_line_2 }}</span>
+</h1>
+
+{% schema %}
+  {
+    "name": "Hero Heading",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading_text_line_1",
+        "label": "Heading Text (First Line)",
+        "default": "Nourish Your Body,"
+      },
+      {
+        "type": "text",
+        "id": "heading_text_line_2",
+        "label": "Heading Text (Second Line)",
+        "default": "Ground Your Spirit"
+      }
+    ]
+  }
+{% endschema %}
