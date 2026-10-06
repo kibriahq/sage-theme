@@ -1,0 +1,65 @@
+<!-- Floating Bottom-Left Customer Review Snippet -->
+<div
+  class="absolute bottom-6 left-6 right-6 sm:right-auto sm:max-w-xs backdrop-blur-md bg-surface-container-lowest/90 rounded-2xl p-4 shadow-xl"
+>
+  <div class="flex items-center gap-1.5 text-primary mb-1">
+    {% for i in (1..block.settings.badge_rating) %}
+      <span
+        class="text-[18px]"
+        ><ion-icon name="star"></ion-icon
+      ></span>
+    {% endfor %}
+    {% assign empty_stars = 5 | minus: block.settings.badge_rating %}
+    {% for i in (1..empty_stars) %}
+      <span
+        class="text-[18px]"
+        ><ion-icon name="star-outline"></ion-icon
+      ></span>
+    {% endfor %}
+    <span
+      class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-wider ml-1"
+      >Verified</span
+    >
+  </div>
+  <p class="font-body-sm text-body-sm text-on-surface italic leading-snug">“{{ block.settings.badge_text }}”</p>
+  <div class="flex items-center justify-between mt-2 pt-2 border-t-0">
+    <span
+      class="font-label-sm text-label-sm text-on-surface-variant font-semibold"
+      >— {{ block.settings.badge_author -}}
+    </span>
+    <span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Media Badge Bottom",
+  "settings": [
+    {
+      "type": "range",
+      "id": "badge_rating",
+      "label": "Review Rating",
+      "min": 1,
+      "max": 5,
+      "default": 5
+    },
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Review Text",
+      "default": "My skin has never felt softer or more naturally radiant in years."
+    },
+    {
+      "type": "text",
+      "id": "badge_author",
+      "label": "Review Author",
+      "default": "Clara M., Verified Buyer"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Media Badge Bottom"
+    }
+  ]
+}
+{% endschema %}
