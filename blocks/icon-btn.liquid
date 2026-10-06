@@ -1,0 +1,50 @@
+<a
+  class="group inline-flex items-center gap-3 px-8 py-3.5 rounded-xl bg-primary text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary-container hover:shadow-lg transition-all duration-300"
+  href="{{ block.settings.btn_url }}"
+>
+  <span>{{ block.settings.btn_text }}</span>
+  <span class="btn-icon">{{ block.settings.btn_icon }}</span>
+</a>
+
+<style>
+  .btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .group:hover .btn-icon {
+    transform: translateX(4px);
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Primary Button",
+  "settings": [
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Primary Button"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "html",
+      "id": "btn_icon",
+      "label": "Button Icon",
+      "default": "<ion-icon name=\"arrow-forward-outline\"></ion-icon>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon Button"
+    },
+  ]
+}
+{% endschema %}

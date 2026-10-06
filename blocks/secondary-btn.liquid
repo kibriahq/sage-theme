@@ -1,0 +1,30 @@
+<a
+  class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-surface-container hover:bg-secondary-container text-on-surface font-label-lg text-label-lg transition-all duration-300"
+  href="{{ block.settings.btn_url }}"
+>
+  <span>{{ block.settings.btn_text }}</span>
+</a>
+
+{% schema %}
+{
+  "name": "Secondary Button",
+  "settings": [
+    {
+      "type": "text",
+      "id": "btn_text",
+      "label": "Button Text",
+      "default": "Secondary Button"
+    },
+    {
+      "type": "url",
+      "id": "btn_url",
+      "label": "Button URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Secondary Button"
+    }
+  ]
+}
+{% endschema %}
