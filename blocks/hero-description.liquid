@@ -1,0 +1,17 @@
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed">
+    {{ block.settings.description_text }}
+</p>
+
+{% schema %}
+  {
+    "name": "Hero Description",
+    "settings": [
+        {
+            "type": "text",
+            "id": "description_text",
+            "label": "Description Text",
+            "default": "Artisanal organic skincare, ceremonial botanicals, and hand-crafted wellness essentials harvested sustainably for your mindful everyday ritual."
+        }
+    ]
+  }
+{% endschema %}
