@@ -1,0 +1,117 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "hero-badge": {
+          "type": "hero-badge",
+          "static": true,
+          "settings": {
+            "badge_text": "🌿100% Organic & Ethical"
+          },
+          "blocks": {}
+        },
+        "hero-heading": {
+          "type": "hero-heading",
+          "static": true,
+          "settings": {
+            "heading_text_line_1": "Nourish Your Body,",
+            "heading_text_line_2": "Ground Your Spirit"
+          },
+          "blocks": {}
+        },
+        "hero-description": {
+          "type": "hero-description",
+          "static": true,
+          "settings": {
+            "description_text": "Artisanal organic skincare, ceremonial botanicals, and hand-crafted wellness essentials harvested sustainably for your mindful everyday ritual."
+          },
+          "blocks": {}
+        },
+        "hero-btns": {
+          "type": "hero-btns",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "primary_btn_TW6ctm": {
+              "type": "icon-btn",
+              "name": "Icon Button",
+              "settings": {
+                "btn_text": "Shop Collection",
+                "btn_url": "",
+                "btn_icon": "<ion-icon name=\"arrow-forward-outline\"></ion-icon>"
+              },
+              "blocks": {}
+            },
+            "secondary_btn_JLg7Wj": {
+              "type": "secondary-btn",
+              "name": "Secondary Button",
+              "settings": {
+                "btn_text": "Explore Rituals",
+                "btn_url": ""
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "primary_btn_TW6ctm",
+            "secondary_btn_JLg7Wj"
+          ]
+        },
+        "hero-social-proof": {
+          "type": "hero-social-proof",
+          "static": true,
+          "settings": {
+            "social_proof_text": "Loved by 10,000+ mindful customers worldwide"
+          },
+          "blocks": {}
+        },
+        "hero-media": {
+          "type": "hero-media",
+          "static": true,
+          "settings": {},
+          "blocks": {
+            "hero_media_badge_bottom_WxwmE6": {
+              "type": "hero-media-badge-bottom",
+              "name": "Hero Media Badge Bottom",
+              "settings": {
+                "badge_rating": 4,
+                "badge_text": "My skin has never felt softer or more naturally radiant in years.",
+                "badge_author": "Clara M., Verified Buyer"
+              },
+              "blocks": {}
+            },
+            "hero_media_badge_top_j9BJY8": {
+              "type": "hero-media-badge-top",
+              "name": "Hero Media Badge Top",
+              "settings": {
+                "badge_icon": "<ion-icon name=\"diamond-outline\"></ion-icon>",
+                "badge_heading": "New Arrival ✨",
+                "badge_text": "Hydrating Face Cream",
+                "badge_price": "$48.00"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "hero_media_badge_top_j9BJY8",
+            "hero_media_badge_bottom_WxwmE6"
+          ]
+        }
+      },
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero"
+  ]
+}
