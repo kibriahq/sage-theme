@@ -1,0 +1,96 @@
+<section class="py-space-xl" id="curated-collections">
+  <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-space-lg">
+    <div>
+      <span
+        class="font-label-md text-label-md text-primary uppercase tracking-widest block mb-1"
+      >
+        {{- section.settings.subtitle -}}
+      </span>
+      <h2 class="font-headline-lg text-headline-lg text-on-surface font-medium">{{ section.settings.title }}</h2>
+    </div>
+    <a
+      class="group inline-flex items-center gap-2 font-label-lg text-label-lg text-primary hover:text-primary-container transition-colors"
+      href="{{ routes.collections_url }}"
+    >
+      <span>View all collections</span>
+      <span
+        class="material-symbols-outlined text-lg transition-transform group-hover:translate-x-1"
+        >arrow_forward</span
+      >
+    </a>
+  </div>
+
+  {% if section.blocks.size == 0 %}
+    <span class="font-label-md text-label-md text-primary/50 uppercase tracking-widest block mb-1 text-center my-20"
+      >No Collections Selected</span
+    >
+  {% endif %}
+  <!-- 5-Card Layout Grid -->
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-space-sm sm:gap-gutter">
+    {% for block in section.blocks %}
+      <a
+        class="group relative flex flex-col rounded-2xl bg-surface-container-lowest p-3 shadow-sm hover:shadow-md transition-all duration-300"
+        href="{{ block.settings.collection.url }}"
+      >
+        <div
+          class="w-full aspect-square rounded-xl overflow-hidden bg-surface-container mb-3 relative"
+        >
+          <img
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            data-alt="Close up of organic glass dropper serum bottle with botanical lavender and eucalyptus stems softly lit in morning sunlight"
+            src="{{ block.settings.collection.image | img_url: '800x' }}"
+          />
+          <span
+            class="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-sm text-[11px] font-label-sm text-on-surface font-semibold"
+            >{{ block.settings.collection.products_count }} items</span
+          >
+        </div>
+        <span
+          class="font-headline-sm text-[17px] text-on-surface font-medium leading-snug group-hover:text-primary transition-colors"
+          >{{ block.settings.collection.title }}</span
+        >
+        <span class="font-body-sm text-[12px] text-on-surface-variant mt-0.5">{{ block.settings.collection.description }}</span>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Curated Collections",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Ritual Categories"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Curated Collections"
+    }
+  ],
+  "max_blocks": 5,
+  "blocks": [
+    {
+      "type": "curated-collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Curated Collections",
+      "category": "Sections"
+    }
+  ]
+}
+{% endschema %}
