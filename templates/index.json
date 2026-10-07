@@ -80,16 +80,6 @@
           "static": true,
           "settings": {},
           "blocks": {
-            "hero_media_badge_bottom_WxwmE6": {
-              "type": "hero-media-badge-bottom",
-              "name": "Hero Media Badge Bottom",
-              "settings": {
-                "badge_rating": 4,
-                "badge_text": "My skin has never felt softer or more naturally radiant in years.",
-                "badge_author": "Clara M., Verified Buyer"
-              },
-              "blocks": {}
-            },
             "hero_media_badge_top_j9BJY8": {
               "type": "hero-media-badge-top",
               "name": "Hero Media Badge Top",
@@ -98,6 +88,16 @@
                 "badge_heading": "New Arrival ✨",
                 "badge_text": "Hydrating Face Cream",
                 "badge_price": "$48.00"
+              },
+              "blocks": {}
+            },
+            "hero_media_badge_bottom_WxwmE6": {
+              "type": "hero-media-badge-bottom",
+              "name": "Hero Media Badge Bottom",
+              "settings": {
+                "badge_rating": 4,
+                "badge_text": "My skin has never felt softer or more naturally radiant in years.",
+                "badge_author": "Clara M., Verified Buyer"
               },
               "blocks": {}
             }
@@ -109,9 +109,56 @@
         }
       },
       "settings": {}
+    },
+    "curated-collections": {
+      "type": "curated-collections",
+      "blocks": {
+        "curated_collection_RTJcWC": {
+          "type": "curated-collection",
+          "settings": {
+            "collection": "bedding"
+          }
+        },
+        "curated_collection_4LXtXi": {
+          "type": "curated-collection",
+          "settings": {
+            "collection": "furniture"
+          }
+        },
+        "curated_collection_DcRzgP": {
+          "type": "curated-collection",
+          "settings": {
+            "collection": "home-deco"
+          }
+        },
+        "curated_collection_LpFPDk": {
+          "type": "curated-collection",
+          "settings": {
+            "collection": "lighting"
+          }
+        },
+        "curated_collection_Kh3kVH": {
+          "type": "curated-collection",
+          "settings": {
+            "collection": "sports"
+          }
+        }
+      },
+      "block_order": [
+        "curated_collection_RTJcWC",
+        "curated_collection_4LXtXi",
+        "curated_collection_DcRzgP",
+        "curated_collection_LpFPDk",
+        "curated_collection_Kh3kVH"
+      ],
+      "settings": {
+        "subtitle": "Ritual Categories",
+        "title": "Curated Collections"
+      }
     }
   },
   "order": [
-    "hero"
+    "hero",
+    "curated-collections"
   ]
 }
