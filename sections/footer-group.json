@@ -1,0 +1,124 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "Footer",
+  "type": "footer",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "footer_menu_eHAVht": {
+          "type": "footer-menu",
+          "name": "Footer Menu",
+          "settings": {
+            "footer_menu": "menu"
+          },
+          "blocks": {}
+        },
+        "footer_menu_g9Xxtz": {
+          "type": "footer-menu",
+          "name": "Footer Menu",
+          "settings": {
+            "footer_menu": "shop"
+          },
+          "blocks": {}
+        },
+        "footer_menu_NRdwdf": {
+          "type": "footer-menu",
+          "name": "Footer Menu",
+          "settings": {
+            "footer_menu": "support"
+          },
+          "blocks": {}
+        },
+        "footer-brand": {
+          "type": "footer-brand",
+          "static": true,
+          "settings": {
+            "brand_name": "Verdant Living",
+            "footer_text": "Botanical luxury crafted for conscious living. Pure, organic formulations and regenerative wellness essentials grown with earth-first integrity."
+          },
+          "blocks": {
+            "footer_social_link_K9g6ep": {
+              "type": "footer-social-link",
+              "name": "Footer Social Link",
+              "settings": {
+                "platform": "instagram",
+                "url": "https://instagram.com"
+              },
+              "blocks": {}
+            },
+            "footer_social_link_yAyL8z": {
+              "type": "footer-social-link",
+              "name": "Footer Social Link",
+              "settings": {
+                "platform": "x",
+                "url": "https://x.com"
+              },
+              "blocks": {}
+            },
+            "footer_social_link_39Kw7y": {
+              "type": "footer-social-link",
+              "name": "Footer Social Link",
+              "settings": {
+                "platform": "tiktok",
+                "url": "https://tiktok.com"
+              },
+              "blocks": {}
+            },
+            "footer_social_link_zeLje7": {
+              "type": "footer-social-link",
+              "name": "Footer Social Link",
+              "settings": {
+                "platform": "pinterest",
+                "url": "https://pinterest.com"
+              },
+              "blocks": {}
+            },
+            "footer_social_link_kmkQwg": {
+              "type": "footer-social-link",
+              "name": "Footer Social Link",
+              "settings": {
+                "platform": "linkedin",
+                "url": "https://linkedin.com"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "footer_social_link_K9g6ep",
+            "footer_social_link_yAyL8z",
+            "footer_social_link_39Kw7y",
+            "footer_social_link_zeLje7",
+            "footer_social_link_kmkQwg"
+          ]
+        },
+        "footer-bottom": {
+          "type": "footer-bottom",
+          "static": true,
+          "settings": {
+            "show_payment_icons": true,
+            "copyright_text": "© 2026 Verdant Living. All rights reserved."
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "footer_menu_eHAVht",
+        "footer_menu_g9Xxtz",
+        "footer_menu_NRdwdf"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "footer"
+  ]
+}
