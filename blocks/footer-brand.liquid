@@ -1,0 +1,38 @@
+<div class="flex flex-col gap-space-sm">
+  <span
+    class="font-headline-sm text-headline-sm text-on-surface font-medium"
+  >
+    {{- block.settings.brand_name -}}
+  </span>
+  <p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+    {{ block.settings.footer_text }}
+  </p>
+  <div class="flex items-center gap-space-sm pt-space-xs flex-wrap">
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Footer Brand",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "Verdant Living"
+    },
+    {
+      "type": "textarea",
+      "id": "footer_text",
+      "label": "Footer Text",
+      "default": "Botanical luxury crafted for conscious living. Pure, organic formulations and regenerative wellness essentials grown with earth-first integrity."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "footer-social-link",
+    }
+  ]
+}
+{% endschema %}
