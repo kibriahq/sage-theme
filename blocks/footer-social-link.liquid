@@ -1,0 +1,63 @@
+{% if block.settings.url != blank %}
+  <a
+    aria-label="{{ block.settings.platform | capitalize }}"
+    class="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant hover:bg-slate-300/90 hover:text-on-primary transition-colors"
+    target="_blank"
+    href="{{ block.settings.url }}"
+  >
+    <ion-icon name="logo-{{ block.settings.platform }}"></ion-icon>
+  </a>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Footer Social Link",
+  "settings": [
+    {
+      "type": "select",
+      "id": "platform",
+      "label": "Platform",
+      "options": [
+        {
+          "value": "instagram",
+          "label": "Instagram"
+        },
+        {
+          "value": "x",
+          "label": "X"
+        },
+        {
+          "value": "pinterest",
+          "label": "Pinterest"
+        },
+        {
+          "value": "facebook",
+          "label": "Facebook"
+        },
+        {
+          "value": "youtube",
+          "label": "YouTube"
+        },
+        {
+          "value": "tiktok",
+          "label": "TikTok"
+        },
+        {
+          "value": "linkedin",
+          "label": "LinkedIn"
+        }
+      ]
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "URL"
+    }
+  ],
+  "presets": [
+    {
+        "name": "Footer Social Link"
+    }
+  ]
+}
+{% endschema %}
