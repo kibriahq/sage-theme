@@ -155,10 +155,21 @@
         "subtitle": "Ritual Categories",
         "title": "Curated Collections"
       }
+    },
+    "featured-products": {
+      "type": "featured-products",
+      "settings": {
+        "subtitle": "Consciously Formulated",
+        "title": "Hand-Crafted Essentials",
+        "new_arrivals_collection": "variant-collection",
+        "best_sellers_collection": "home-deco",
+        "on_sale_collection": "bedding"
+      }
     }
   },
   "order": [
     "hero",
-    "curated-collections"
+    "curated-collections",
+    "featured-products"
   ]
 }
