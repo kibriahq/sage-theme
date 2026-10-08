@@ -1,0 +1,150 @@
+<section class="py-space-xl" id="featured-products">
+  <div class="flex flex-col items-center text-center mb-space-lg">
+    <span
+      class="font-label-md text-label-md text-primary uppercase tracking-widest mb-1.5"
+    >
+      {{- section.settings.subtitle -}}
+    </span>
+    <h2 class="font-headline-lg text-headline-lg text-on-surface font-medium mb-space-md">
+      {{ section.settings.title }}
+    </h2>
+    <!-- Interactive Filter Tab Bar -->
+    <div
+      class="inline-flex p-1.5 rounded-2xl bg-surface-container-high/60 gap-1.5"
+      id="filter-tabs"
+    >
+      <button
+        class="filter-tab px-5 py-2 rounded-xl font-label-md text-label-md bg-primary text-on-primary shadow-sm transition-all duration-200"
+        data-filter="new"
+        type="button"
+      >
+        New Arrivals
+      </button>
+      <button
+        class="filter-tab px-5 py-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all duration-200"
+        data-filter="best"
+        type="button"
+      >
+        Best Sellers
+      </button>
+      <button
+        class="filter-tab px-5 py-2 rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface inline-flex items-center gap-1.5 transition-all duration-200"
+        data-filter="sale"
+        type="button"
+      >
+        <span>On Sale</span>
+        <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+      </button>
+    </div>
+  </div>
+  <!-- New Arrivals -->
+  <div id="new" class="filter-content transform transition-all duration-300">
+    <!-- 4-Column Product Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+      {% for product in section.settings.new_arrivals_collection.products limit: 4 %}
+        <!-- Product Item -->
+        {% render 'featured-product-card', product: product %}
+      {% endfor %}
+    </div>
+    <!-- Load More Button -->
+    {% if section.settings.new_arrivals_collection.products.size > 4 %}
+      <div class="flex justify-center mt-space-lg">
+        <a
+          class="px-8 py-3 rounded-xl bg-surface-container hover:bg-secondary-container text-on-surface font-label-lg text-label-lg transition-all duration-300 inline-flex items-center gap-2"
+          href="{{ section.settings.new_arrivals_collection.url }}"
+        >
+          <span>Explore All {{ section.settings.new_arrivals_collection.products.size | minus: 4 }} Products</span>
+          <span class="material-symbols-outlined text-lg">expand_more</span>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+  <!-- Best Sellers -->
+  <div id="best" class="filter-content transform transition-all duration-300 hidden">
+    <!-- 4-Column Product Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+      {% for product in section.settings.best_sellers_collection.products limit: 4 %}
+        <!-- Product Item -->
+        {% render 'featured-product-card', product: product %}
+      {% endfor %}
+    </div>
+    <!-- Load More Button -->
+    {% if section.settings.best_sellers_collection.products.size > 4 %}
+      <div class="flex justify-center mt-space-lg">
+        <a
+          class="px-8 py-3 rounded-xl bg-surface-container hover:bg-secondary-container text-on-surface font-label-lg text-label-lg transition-all duration-300 inline-flex items-center gap-2"
+          href="{{ section.settings.best_sellers_collection.url }}"
+        >
+          <span>Explore All {{ section.settings.best_sellers_collection.products.size | minus: 4 }} Products</span>
+          <span class="material-symbols-outlined text-lg">expand_more</span>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+  <!-- On Sale -->
+  <div id="sale" class="filter-content transform transition-all duration-300 hidden">
+    <!-- 4-Column Product Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
+      {% for product in section.settings.on_sale_collection.products limit: 4 %}
+        <!-- Product Item -->
+        {% render 'featured-product-card', product: product %}
+      {% endfor %}
+    </div>
+    <!-- Load More Button -->
+    {% if section.settings.on_sale_collection.products.size > 4 %}
+      <div class="flex justify-center mt-space-lg">
+        <a
+          class="px-8 py-3 rounded-xl bg-surface-container hover:bg-secondary-container text-on-surface font-label-lg text-label-lg transition-all duration-300 inline-flex items-center gap-2"
+          href="{{ section.settings.on_sale_collection.url }}"
+        >
+          <span>Explore All {{ section.settings.on_sale_collection.products.size | minus: 4 }} Products</span>
+          <span class="material-symbols-outlined text-lg">expand_more</span>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<script src="{{ 'featured-products.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Consciously Formulated"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Hand-Crafted Essentials"
+    },
+    {
+      "type": "collection",
+      "id": "new_arrivals_collection",
+      "label": "New Arrivals Collection"
+    },
+    {
+      "type": "collection",
+      "id": "best_sellers_collection",
+      "label": "Best Sellers Collection"
+    },
+    {
+      "type": "collection",
+      "id": "on_sale_collection",
+      "label": "On Sale Collection"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Featured Products",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}
