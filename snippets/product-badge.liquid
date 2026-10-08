@@ -1,0 +1,44 @@
+{%- liquid
+  assign allowed = 'hot,best,new,save' | split: ','
+-%}
+
+{%- if product != blank -%}
+  {%- capture badges -%}
+  {%- for tag in product.tags -%}
+      {%- assign prefix = tag | slice: 0, 5 -%}
+      {%- if prefix == 'tag__' -%}
+        {%- liquid
+          assign rest = tag | remove_first: 'tag__'
+          assign type = rest | split: '_' | first | downcase
+          assign label = rest | split: '_' | slice: 1, 100 | join: '_'
+        -%}
+
+        {%- if allowed contains type and label != blank -%}
+          {%- case type -%}
+            {%- when 'hot' -%}
+              {%- assign color = 'bg-tertiary text-on-tertiary' -%}
+            {%- when 'best' -%}
+              {%- assign color = 'bg-primary text-on-primary' -%}
+            {%- when 'new' -%}
+              {%- assign color = 'bg-secondary-container text-on-secondary-container' -%}
+            {%- when 'save' -%}
+              {%- assign color = 'bg-tertiary text-on-tertiary' -%}
+          {%- endcase -%}
+
+          <span class="px-3 py-1 rounded-full font-label-sm text-[11px] uppercase font-bold tracking-wider shadow-sm {{ color }}">
+            {{- label | escape -}}
+          </span>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  {%- if badges contains '<span' -%}
+    <div class="flex tw:flex-wrap gap-1.5">
+      {{ badges }}
+    </div>
+  {%- elsif request.design_mode -%}
+    <div class="tw:text-xs tw:text-gray-400">No badge tags found on this product</div>
+  {%- endif -%}
+{%- endif -%}
+
