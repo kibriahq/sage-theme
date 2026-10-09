@@ -1,0 +1,33 @@
+<h2
+  class="font-headline-xl text-headline-xl text-on-surface font-medium leading-[1.15]"
+>
+  {{ block.settings.promo_title_first_part }}
+  <br />
+  <span class="text-primary italic">{{ block.settings.promo_title_second_part }}</span>
+</h2>
+
+{% schema %}
+{
+  "name": "Promo Title",
+  "settings": [
+    {
+      "type": "text",
+      "id": "promo_title_first_part",
+      "label": "Promo Title First Part",
+      "default": "Autumn Equinox Bundle:"
+    },
+    {
+      "type": "text",
+      "id": "promo_title_second_part",
+      "label": "Promo Title Second Part",
+      "default": "Get 25% Off Storewide"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo Title",
+      "category": "Promo Banner"
+    }
+  ]
+}
+{% endschema %}
