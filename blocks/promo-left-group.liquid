@@ -1,0 +1,55 @@
+<div class="lg:col-span-7 flex flex-col gap-space-sm promo-left-group" {{ block.shopify_attributes }}>
+  {% content_for 'blocks' %}
+</div>
+
+{% schema %}
+{
+  "name": "Promo Left Group",
+  "tag": null,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "promo-subtitle"
+    },
+    {
+      "type": "promo-title"
+    },
+    {
+      "type": "promo-description"
+    },
+    {
+      "type": "promo-countdown-timer"
+    },
+    {
+      "type": "icon-btn",
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo Left Group",
+      "category": "Promo Banner",
+      "blocks": [
+        {
+          "type": "promo-subtitle"
+        },
+        {
+          "type": "promo-title"
+        },
+        {
+          "type": "promo-description"
+        },
+        {
+          "type": "promo-countdown-timer"
+        },
+        {
+          "type": "icon-btn",
+          "settings": {
+            "btn_text": "Shop The Deal Now",
+            "btn_url": "#featured-products",
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
