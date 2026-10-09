@@ -1,0 +1,94 @@
+<div class="flex items-center gap-3 sm:gap-4 my-3">
+  <div
+    class="flex flex-col items-center justify-center w-16 h-18 sm:w-20 sm:h-20 bg-surface-container-lowest rounded-2xl shadow-sm"
+  >
+    <span
+      class="font-headline-md text-headline-md text-on-surface font-bold leading-none"
+      id="timer-days"
+    >
+      00
+    </span>
+    <span
+      class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-wider mt-1"
+      >Days</span
+    >
+  </div>
+  <span class="font-headline-md text-on-surface-variant font-bold">:</span>
+  <div
+    class="flex flex-col items-center justify-center w-16 h-18 sm:w-20 sm:h-20 bg-surface-container-lowest rounded-2xl shadow-sm"
+  >
+    <span
+      class="font-headline-md text-headline-md text-on-surface font-bold leading-none"
+      id="timer-hours"
+    >
+      00
+    </span>
+    <span
+      class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-wider mt-1"
+      >Hours</span
+    >
+  </div>
+  <span class="font-headline-md text-on-surface-variant font-bold">:</span>
+  <div
+    class="flex flex-col items-center justify-center w-16 h-18 sm:w-20 sm:h-20 bg-surface-container-lowest rounded-2xl shadow-sm"
+  >
+    <span
+      class="font-headline-md text-headline-md text-on-surface font-bold leading-none"
+      id="timer-mins"
+    >
+      00
+    </span>
+    <span
+      class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-wider mt-1"
+      >Mins</span
+    >
+  </div>
+  <span class="font-headline-md text-on-surface-variant font-bold">:</span>
+  <div
+    class="flex flex-col items-center justify-center w-16 h-18 sm:w-20 sm:h-20 bg-surface-container-lowest rounded-2xl shadow-sm"
+  >
+    <span
+      class="font-headline-md text-headline-md text-primary font-bold leading-none"
+      id="timer-secs"
+      >00</span
+    >
+    <span
+      class="font-label-sm text-[10px] text-on-surface-variant uppercase tracking-wider mt-1"
+      >Secs</span
+    >
+  </div>
+</div>
+
+<script src="{{ 'promo-banner.js' | asset_url }}" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    window.initCountdown({
+      date: `{{ block.settings.date }}`,
+      time: `{{ block.settings.time }}`,
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Promo Countdown Timer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "date",
+      "label": "Target Date (DD-MM-YYYY)"
+    },
+    {
+      "type": "text",
+      "id": "time",
+      "label": "Target Time (HH:MM)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo Countdown Timer",
+      "category": "Promo Banner"
+    }
+  ]
+}
+{% endschema %}
