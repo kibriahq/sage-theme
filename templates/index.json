@@ -165,11 +165,84 @@
         "best_sellers_collection": "home-deco",
         "on_sale_collection": "bedding"
       }
+    },
+    "promo-banner": {
+      "type": "promo-banner",
+      "blocks": {
+        "promo_left_group_qrhtid": {
+          "type": "promo-left-group",
+          "name": "Promo Left Group",
+          "settings": {},
+          "blocks": {
+            "promo_subtitle_6t4rC6": {
+              "type": "promo-subtitle",
+              "settings": {
+                "promo_subtitle": "Limited Seasonal Offer"
+              },
+              "blocks": {}
+            },
+            "promo_title_nVcGGd": {
+              "type": "promo-title",
+              "settings": {
+                "promo_title_first_part": "Autumn Equinox Bundle:",
+                "promo_title_second_part": "Get 25% Off Storewide"
+              },
+              "blocks": {}
+            },
+            "promo_description_VAzHCp": {
+              "type": "promo-description",
+              "settings": {
+                "promo_description": "Stock up on restorative herbal teas, artisan soy candles, and calming face elixirs. Use code <span>VERDANT25</span> at checkout."
+              },
+              "blocks": {}
+            },
+            "promo_countdown_timer_C8PCW6": {
+              "type": "promo-countdown-timer",
+              "settings": {
+                "date": "10-10-2026",
+                "time": "10:00"
+              },
+              "blocks": {}
+            },
+            "icon_btn_89C6tM": {
+              "type": "icon-btn",
+              "name": "Icon Button",
+              "settings": {
+                "btn_text": "Shop The Deal Now",
+                "btn_url": "",
+                "btn_icon": "<ion-icon name=\"arrow-forward-outline\"></ion-icon>"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "promo_subtitle_6t4rC6",
+            "promo_title_nVcGGd",
+            "promo_description_VAzHCp",
+            "promo_countdown_timer_C8PCW6",
+            "icon_btn_89C6tM"
+          ]
+        },
+        "promo_right_group_f7gXUt": {
+          "type": "promo-right-group",
+          "name": "Promo Right Group",
+          "settings": {
+            "badge_text": "25% OFF BUNDLE"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "promo_left_group_qrhtid",
+        "promo_right_group_f7gXUt"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "hero",
     "curated-collections",
-    "featured-products"
+    "featured-products",
+    "promo-banner"
   ]
 }
