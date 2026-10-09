@@ -1,0 +1,45 @@
+<div class="lg:col-span-5 relative flex justify-center lg:justify-end" {{ block.shopify_attributes }}>
+  <div
+    class="relative w-full max-w-sm aspect-[4/5] rounded-3xl overflow-hidden shadow-xl bg-surface-container-lowest p-2"
+  >
+    <div class="w-full h-full rounded-2xl overflow-hidden relative">
+      <img
+        class="w-full h-full object-cover"
+        data-alt="{{ block.settings.badge_text }}"
+        src="{{ block.settings.promo_image | default: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBJ-rB_8AznzQyt_sLUwZp4xtmrZqNjq8ETpfvCYLKisMPEb3f3tsjfQfN8gEtBgk26uaWb_etLBgfj3BeqYY2AUySJIkjxZJIKw2V6Uxs8pd2TFxjk-N5891P_GoMcmhKUmaNcSppvsmFcU-L-5Qc2NaBTQ9dcvFgmkfcwL_Sjt3r8UZyXX1xGvLaIHQowfnMW1Syoz1W8ZD0eaYjyJNdZk9FzRDGJxewVepcYfsd972FheJcRX8q82A' }}"
+      />
+      <div
+        class="absolute top-4 right-4 px-4 py-2 rounded-2xl bg-tertiary text-on-tertiary font-label-md text-label-md font-bold shadow-lg"
+      >
+        {{ block.settings.badge_text }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Promo Right Group",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Badge Text",
+      "default": "25% OFF BUNDLE"
+    },
+    {
+      "type": "image_picker",
+      "id": "promo_image",
+      "label": "Image",
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Promo Right Group",
+      "category": "Promo Banner",
+    }
+  ]
+}
+{% endschema %}
