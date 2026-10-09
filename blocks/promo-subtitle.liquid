@@ -1,0 +1,28 @@
+<div class="inline-flex items-center gap-2">
+  <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+  <span
+    class="font-label-md text-label-md text-primary tracking-widest uppercase font-bold"
+  >
+    {{- block.settings.promo_subtitle -}}
+  </span>
+</div>
+
+{% schema %}
+{
+  "name": "Promo Subtitle",
+  "settings": [
+    {
+      "type": "text",
+      "id": "promo_subtitle",
+      "label": "Promo Subtitle",
+      "default": "Limited Seasonal Offer"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Promo Subtitle",
+      "category": "Promo Banner"
+    }
+  ]
+}
+{% endschema %}
