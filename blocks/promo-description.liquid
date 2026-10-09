@@ -1,0 +1,26 @@
+<p
+  class="font-body-lg text-body-lg text-on-surface-variant max-w-xl leading-relaxed"
+  id="promo-banner-description"
+>
+  {{ block.settings.promo_description }}
+</p>
+
+{% schema %}
+{
+  "name": "Promo Description",
+  "settings": [
+    {
+      "type": "html",
+      "id": "promo_description",
+      "label": "Promo Description",
+      "default": "Stock up on restorative herbal teas, artisan soy candles, and calming face elixirs. Use code <span>VERDANT25</span> at checkout."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Default",
+      "category": "Promo Banner"
+    }
+  ]
+}
+{% endschema %}
