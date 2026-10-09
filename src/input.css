@@ -164,3 +164,11 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+#promo-banner-description span {
+  @apply font-semibold text-on-surface bg-surface-container-lowest px-2 py-0.5 rounded-lg shadow-sm;
+}
+
+.promo-left-group a {
+  @apply mt-2;
+}
