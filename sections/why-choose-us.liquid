@@ -1,0 +1,24 @@
+<section class="py-space-xl">
+  <!-- 4 Pillars Row -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter mb-space-xl">
+    {% content_for 'blocks' %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why Choose Us",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "why-choose-us-feature"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Why Choose Us",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
