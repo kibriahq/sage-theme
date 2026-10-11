@@ -237,12 +237,65 @@
         "promo_right_group_f7gXUt"
       ],
       "settings": {}
+    },
+    "why-choose-us": {
+      "type": "why-choose-us",
+      "blocks": {
+        "why_choose_us_feature_7NaRXM": {
+          "type": "why-choose-us-feature",
+          "name": "Feature",
+          "settings": {
+            "icon": "<ion-icon name=\"car-outline\"></ion-icon>",
+            "title": "Carbon-Neutral Shipping",
+            "description": "Free delivery on all orders over $50 with 100% biodegradable compostable mailers."
+          },
+          "blocks": {}
+        },
+        "why_choose_us_feature_inDFHU": {
+          "type": "why-choose-us-feature",
+          "name": "Feature",
+          "settings": {
+            "icon": "<ion-icon name=\"leaf-outline\"></ion-icon>",
+            "title": "100% Certified Organic",
+            "description": "USDA & Soil Association certified. Pure botanical active extracts without synthetic additives."
+          },
+          "blocks": {}
+        },
+        "why_choose_us_feature_f4YXQN": {
+          "type": "why-choose-us-feature",
+          "name": "Feature",
+          "settings": {
+            "icon": "<ion-icon name=\"sync-outline\"></ion-icon>",
+            "title": "Infinitely Recyclable Glass",
+            "description": "Housed in protective biophotonic amber & frosted flint glass to preserve nutrient vitality."
+          },
+          "blocks": {}
+        },
+        "why_choose_us_feature_TrXtNP": {
+          "type": "why-choose-us-feature",
+          "name": "Feature",
+          "settings": {
+            "icon": "<ion-icon name=\"headset-outline\"></ion-icon>",
+            "title": "Mindful Herbal Support",
+            "description": "Talk directly with licensed herbalists and holistic skincare specialists 7 days a week."
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "why_choose_us_feature_7NaRXM",
+        "why_choose_us_feature_inDFHU",
+        "why_choose_us_feature_f4YXQN",
+        "why_choose_us_feature_TrXtNP"
+      ],
+      "settings": {}
     }
   },
   "order": [
     "hero",
     "curated-collections",
     "featured-products",
-    "promo-banner"
+    "promo-banner",
+    "why-choose-us"
   ]
 }
