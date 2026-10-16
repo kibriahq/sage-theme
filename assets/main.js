@@ -18,3 +18,15 @@ window.addEventListener('scroll', () => {
 
     lastScrollY = currentScrollY;
 });
+
+const carouselPrevBtn = document.querySelector('.swiper-button-prev');
+const carouselNextBtn = document.querySelector('.swiper-button-next');
+
+window.addEventListener('load', () => {
+    if (carouselPrevBtn) {
+        carouselPrevBtn.querySelector('svg').remove();
+    }
+    if (carouselNextBtn) {
+        carouselNextBtn.querySelector('svg').remove();
+    }
+});
