@@ -1,0 +1,129 @@
+<div class="swiper-slide" {{ block.shopify_attributes }}>
+  {% unless block.settings.is_highlighted %}
+    <div class="p-6 sm:p-8 rounded-3xl bg-surface-container-lowest shadow-sm flex flex-col gap-4 text-left">
+      <div class="flex items-center text-[#d97706]">
+        {% for i in (1..block.settings.rating) %}
+          <span
+            class="material-symbols-outlined text-[18px]"
+            style="font-variation-settings: 'FILL' 1;"
+            >star</span
+          >
+        {% endfor %}
+        {% assign empty_stars = 5 | minus: block.settings.rating %}
+        {% for i in (1..empty_stars) %}
+          <span
+            class="material-symbols-outlined text-[18px]"
+            style="font-variation-settings: 'FILL' 0;"
+            >star</span
+          >
+        {% endfor %}
+      </div>
+      <p class="font-body-md text-body-md text-on-surface leading-relaxed italic">“{{ block.settings.review_text }}”</p>
+      <div class="flex items-center gap-3 pt-2">
+        <div
+          class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center font-bold text-on-secondary-container text-xs"
+        >
+          {{ block.settings.reviewer_name | slice: 0, 2 | upcase }}
+        </div>
+        <div>
+          <span
+            class="font-label-md text-label-md text-on-surface block font-semibold"
+          >
+            {{- block.settings.reviewer_name -}}
+          </span>
+          <span class="font-body-sm text-[12px] text-on-surface-variant">{{ block.settings.reviewer_location }}</span>
+        </div>
+      </div>
+    </div>
+
+  {% else %}
+    <!-- (Centerpiece / Highlighted) -->
+
+    <div class="p-8 sm:p-10 rounded-3xl bg-surface-container shadow-xl flex flex-col gap-4 relative lg:-translate-y-2 text-left">
+      <span
+        class="material-symbols-outlined text-4xl text-primary/30 absolute top-6 right-6"
+        >format_quote</span
+      >
+      <div class="flex items-center text-[#d97706]">
+        {% for i in (1..block.settings.rating) %}
+          <span
+            class="material-symbols-outlined text-[18px]"
+            style="font-variation-settings: 'FILL' 1;"
+            >star</span
+          >
+        {% endfor %}
+        {% assign empty_stars = 5 | minus: block.settings.rating %}
+        {% for i in (1..empty_stars) %}
+          <span
+            class="material-symbols-outlined text-[18px]"
+            style="font-variation-settings: 'FILL' 0;"
+            >star</span
+          >
+        {% endfor %}
+      </div>
+      <p class="font-body-lg text-body-lg text-on-surface leading-relaxed italic font-medium">
+            “{{ block.settings.review_text }}”
+      </p>
+      <div class="flex items-center gap-3 pt-3">
+        <div
+          class="w-12 h-12 rounded-full bg-primary flex items-center justify-center font-bold text-on-primary text-sm shadow-md"
+        >
+            {{ block.settings.reviewer_name | slice: 0, 2 | upcase }}
+        </div>
+        <div>
+          <span class="font-label-lg text-label-lg text-on-surface block font-bold">{{ block.settings.reviewer_name }}</span>
+          <span class="font-body-sm text-body-sm text-primary font-medium">{{ block.settings.reviewer_location }}</span>
+        </div>
+      </div>
+    </div>
+  {% endunless %}
+</div>
+
+{% schema %}
+{
+  "name": "Review Slide",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "reviewer_name",
+      "label": "Reviewer Name",
+      "default": "John Doe"
+    },
+    {
+      "type": "text",
+      "id": "reviewer_location",
+      "label": "Reviewer Location",
+      "default": "Verified Buyer · New York, USA"
+    },
+    {
+      "type": "range",
+      "id": "rating",
+      "label": "Rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 5
+    },
+    {
+      "type": "textarea",
+      "id": "review_text",
+      "label": "Review Text",
+      "default": "This is a sample review text."
+    },
+    {
+      "type": "checkbox",
+      "id": "is_highlighted",
+      "label": "Highlight this review",
+      "default": false
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Review Slide",
+      "category": "Reviews"
+    }
+  ]
+}
+{% endschema %}
