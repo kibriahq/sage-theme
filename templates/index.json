@@ -289,6 +289,69 @@
         "why_choose_us_feature_TrXtNP"
       ],
       "settings": {}
+    },
+    "community-review": {
+      "type": "community-review",
+      "blocks": {
+        "review_slide_WzEYC7": {
+          "type": "review-slide",
+          "name": "Review Slide",
+          "settings": {
+            "reviewer_name": "Eleanor Vance",
+            "reviewer_location": "Verified Buyer · Austin, TX",
+            "rating": 5,
+            "review_text": "The ceremonial matcha has replaced my morning coffee ritual entirely. So wonderfully smooth with zero astringency or bitter notes.",
+            "is_highlighted": false
+          },
+          "blocks": {}
+        },
+        "review_slide_THFPBf": {
+          "type": "review-slide",
+          "name": "Review Slide",
+          "settings": {
+            "reviewer_name": "Sophia Chen",
+            "reviewer_location": "Holistic Esthetician · San Francisco",
+            "rating": 5,
+            "review_text": "Verdant Living has transformed my evening routine into a true sanctuary. The skincare serum and lavender candle have an intoxicatingly peaceful scent that melts away tension within seconds.",
+            "is_highlighted": true
+          },
+          "blocks": {}
+        },
+        "review_slide_QBaBk8": {
+          "type": "review-slide",
+          "name": "Review Slide",
+          "settings": {
+            "reviewer_name": "Marcus Thorne",
+            "reviewer_location": "Verified Buyer · Portland, OR",
+            "rating": 5,
+            "review_text": "Exceptional craftsmanship down to the compostable paper packaging tape. Super fast dispatch and generous free samples included!",
+            "is_highlighted": false
+          },
+          "blocks": {}
+        },
+        "review_slide_KhMHF4": {
+          "type": "review-slide",
+          "name": "Review Slide",
+          "settings": {
+            "reviewer_name": "John Doe",
+            "reviewer_location": "Verified Buyer · New York, USA",
+            "rating": 5,
+            "review_text": "This is a sample review text.",
+            "is_highlighted": false
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "review_slide_WzEYC7",
+        "review_slide_THFPBf",
+        "review_slide_QBaBk8",
+        "review_slide_KhMHF4"
+      ],
+      "settings": {
+        "subtitle": "Loved By Conscious Seekers",
+        "title": "Kind Words From Our Community"
+      }
     }
   },
   "order": [
@@ -296,6 +359,7 @@
     "curated-collections",
     "featured-products",
     "promo-banner",
-    "why-choose-us"
+    "why-choose-us",
+    "community-review"
   ]
 }
