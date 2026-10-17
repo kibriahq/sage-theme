@@ -352,6 +352,16 @@
         "subtitle": "Loved By Conscious Seekers",
         "title": "Kind Words From Our Community"
       }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "subtitle": "The Botanical Journal",
+        "title": "Join the Verdant Circle",
+        "description": "Receive 15% off your first order, private seasonal releases, and mindful weekly botanical recipes directly to your inbox.",
+        "success_message": "✨ Welcome to the circle! Check your inbox for your 15% code.",
+        "disclaimer": "No spam ever. Unsubscribe at any time with a single click."
+      }
     }
   },
   "order": [
@@ -360,6 +370,7 @@
     "featured-products",
     "promo-banner",
     "why-choose-us",
-    "community-review"
+    "community-review",
+    "newsletter"
   ]
 }
