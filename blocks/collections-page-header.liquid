@@ -1,0 +1,85 @@
+<section class="max-w-7xl mx-auto w-full px-margin-mobile lg:px-margin pt-4 pb-6">
+  <div
+    class="relative overflow-hidden bg-gradient-to-br from-surface-container-low via-surface-container to-secondary-container/40 rounded-3xl p-6 sm:p-10 shadow-sm"
+  >
+    <!-- Decorative Botanical Leaf Watermark SVG (Background) -->
+    <svg
+      class="absolute -right-8 -bottom-10 w-64 h-64 text-primary/10 pointer-events-none select-none"
+      fill="currentColor"
+      viewbox="0 0 200 200"
+    >
+      <path
+        d="M42.7,105.8C54.6,73.4,78.2,46.9,109.8,31c7.2,16.8,11.5,35.4,12.3,54.8c1.3,28.8-6.3,56.8-21.6,80.1 C84.3,144.3,64.4,124.9,42.7,105.8z M127.6,90.4c12.2-22.3,29.9-40.8,51.4-53.7c-2.4,24.1-10.4,46.8-23.2,66.4 C144.5,99.2,135.8,94.9,127.6,90.4z">
+      </path>
+    </svg>
+    <div class="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="space-y-3 max-w-2xl">
+        <!-- Breadcrumb navigation -->
+        <nav
+          aria-label="Breadcrumb"
+          class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant"
+        >
+          <a class="hover:text-primary transition-colors flex items-center gap-1" href="{{ routes.root_url }}">
+            <span class="material-symbols-outlined text-[16px]">home</span>Home
+          </a>
+          <span class="text-outline-variant">/</span>
+          <a class="hover:text-primary transition-colors" href="{{ routes.collections_url }}">Collections</a>
+          <span class="text-outline-variant">/</span>
+          <span class="text-primary font-semibold">{{ collection.title }}</span>
+        </nav>
+        <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">
+          {% if collection.title == 'Products' %}{{ block.settings.collection_title }}{% else %}{{ collection.title }}{% endif %}
+        </h1>
+        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+          {{
+            collection.description
+            | default: block.settings.collection_description
+          }}
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-3">
+        <div
+          class="inline-flex items-center gap-2 bg-surface-container-lowest/80 backdrop-blur-md px-4 py-2 rounded-full shadow-sm text-on-surface font-label-md text-label-md"
+        >
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span
+            >Showing <strong>{{ collection.products_count }}</strong> curated goods</span
+          >
+        </div>
+        <!-- Quick Mobile Filter Trigger Button (Visible on mobile/tablet) -->
+        <button
+          class="lg:hidden inline-flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-full shadow-sm font-label-md text-label-md hover:bg-primary-container transition-colors"
+          id="mobileFilterOpenBtn"
+          type="button"
+        >
+          <span class="material-symbols-outlined text-[18px]">tune</span>
+          <span>Filters</span>
+          <span
+            class="bg-surface-container-lowest text-primary text-[11px] font-bold rounded-full w-5 h-5 flex items-center justify-center"
+            >3</span
+          >
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collections Page Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "collection_title",
+      "label": "All Products Title",
+      "default": "All Products"
+    },
+    {
+      "type": "textarea",
+      "id": "collection_description",
+      "label": "Default Collection Description",
+      "default": "Discover our curated selection of premium botanical products, crafted with care to enhance your wellness journey. Explore our range of skincare, matcha, herbal elixirs, and more."
+    }
+  ]
+}
+{% endschema %}
