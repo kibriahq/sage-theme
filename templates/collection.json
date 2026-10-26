@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "collections": {
+      "type": "collections",
+      "settings": {}
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {}
+    }
+  },
+  "order": [
+    "collections",
+    "newsletter"
+  ]
+}
