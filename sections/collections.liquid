@@ -2,189 +2,176 @@
 
 <!-- 2. Main Catalog: Sticky Sidebar Filters + Product Grid -->
 <main class="max-w-7xl mx-auto w-full px-margin-mobile lg:px-margin py-4 mb-16">
-  <div class="flex flex-col lg:flex-row gap-8 items-start">
-    <!-- LEFT SIDEBAR: FILTERS DESKTOP -->
-    {% content_for 'block', type: 'collections-sidebar', id: 'collections-sidebar' %}
-    <!-- RIGHT PRODUCT AREA -->
-    <section class="flex-1 w-full">
-      <!-- Top Toolbar -->
-      <div class="bg-surface-container-lowest rounded-2xl p-4 mb-6 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div class="font-body-sm text-body-sm text-on-surface-variant self-start sm:self-center">
-          Showing
-          <span class="font-semibold text-on-surface">1–12</span>
-          of
-          <span class="font-semibold text-on-surface">48</span>
-          results
-        </div>
-        <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
-          <!-- Sort By Select -->
-          <div class="flex items-center gap-2">
-            <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Sort by:</span>
-            <div class="relative">
-              <select class="appearance-none bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md py-2 pl-3 pr-8 rounded-xl cursor-pointer focus:outline-none transition-colors">
-                <option>Featured</option>
-                <option>Best selling</option>
-                <option>Price: low to high</option>
-                <option>Price: high to low</option>
-                <option>Newest arrivals</option>
-              </select>
-              <span class="material-symbols-outlined absolute right-2 top-2.5 text-[18px] pointer-events-none text-on-surface-variant"
-                >expand_more</span
-              >
+  <collection-filter data-section-id="{{ section.id }}">
+    <div class="flex flex-col lg:flex-row gap-8 items-start">
+      <!-- LEFT SIDEBAR: FILTERS DESKTOP -->
+      {% content_for 'block', type: 'collections-sidebar', id: 'collections-sidebar' %}
+      <!-- RIGHT PRODUCT AREA -->
+      <section class="collection-inner flex-1 w-full">
+        <!-- Top Toolbar -->
+        <div class="bg-surface-container-lowest rounded-2xl p-4 mb-6 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="font-body-sm text-body-sm text-on-surface-variant self-start sm:self-center">
+            Showing
+            <span id="product-count" data-total="{{ collection.products.size }}" class="font-semibold text-on-surface">-</span>
+            of
+            <span class="font-semibold text-on-surface">{{ collection.products.size }}</span>
+            results
+          </div>
+          <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
+            <!-- Sort By Select -->
+            <div class="flex items-center gap-2">
+              <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Sort by:</span>
+              <div class="relative">
+                <select class="appearance-none bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md py-2 pl-3 pr-8 rounded-xl cursor-pointer focus:outline-none transition-colors">
+                  <option>Featured</option>
+                  <option>Best selling</option>
+                  <option>Price: low to high</option>
+                  <option>Price: high to low</option>
+                  <option>Newest arrivals</option>
+                </select>
+                <span class="material-symbols-outlined absolute right-2 top-2.5 text-[18px] pointer-events-none text-on-surface-variant"
+                  >expand_more</span
+                >
+              </div>
             </div>
           </div>
-          <!-- View Switcher -->
-          <div class="flex items-center bg-surface-container rounded-xl p-1 gap-1">
-            <button
-              aria-label="Grid View"
-              class="w-8 h-8 rounded-lg flex items-center justify-center bg-primary text-on-primary shadow-sm transition-all"
-              type="button"
-            >
-              <span class="material-symbols-outlined text-[18px]">grid_view</span>
-            </button>
-            <button
-              aria-label="List View"
-              class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface-variant hover:text-primary transition-all"
-              type="button"
-            >
-              <span class="material-symbols-outlined text-[18px]">view_list</span>
-            </button>
-          </div>
         </div>
-      </div>
-      <!-- 3-Column Product Matrix (12 Cards) -->
-      {% paginate collection.products by 12 %}
-        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
-          <!-- Card 1: Luna Serum -->
-          {% for product in collection.products %}
-            <article class="group bg-surface-container-lowest rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-              <div class="relative w-full aspect-square rounded-xl bg-surface-container-low overflow-hidden mb-4">
-                <span class="absolute top-3 left-3 z-10">
-                  {% render 'product-badge', product: product %}
-                </span>
-                <button
-                  aria-label="Save to Wishlist"
-                  class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface-variant hover:text-tertiary flex items-center justify-center transition-colors shadow-sm"
-                  type="button"
-                >
-                  <span class="material-symbols-outlined text-[18px]">favorite</span>
-                </button>
-                <div
-                  class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
-                  data-alt="{{ product.title }} - {{ product.description | strip_html | truncate: 100 }}"
-                  style="background-image: url('{{ product.featured_image | img_url: '720x720' }}')"
-                ></div>
-                <!-- Quick Add Slide Up Drawer on Hover -->
-                <div class="absolute inset-x-3 bottom-3 z-10 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-2">
-                  <button
-                    class="flex-1 bg-primary text-on-primary py-2.5 rounded-xl font-label-md text-label-md shadow-md hover:bg-primary-container flex items-center justify-center gap-1.5 transition-colors"
-                    type="button"
-                  >
-                    <span class="material-symbols-outlined text-[18px]">shopping_bag</span>
-                    <span>Quick Add</span>
-                  </button>
-                  <button
-                    aria-label="Quick preview"
-                    class="w-10 h-10 bg-surface-container-lowest text-on-surface rounded-xl flex items-center justify-center shadow-md hover:text-primary transition-colors"
-                    type="button"
-                  >
-                    <span class="material-symbols-outlined text-[18px]">visibility</span>
-                  </button>
-                </div>
-              </div>
-              <div>
-                <div class="flex items-center gap-1 text-[#D9822B] mb-1">
-                  <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;"
-                    >star</span
-                  >
-                  <span class="font-label-sm text-label-sm font-bold text-on-surface">4.9</span>
-                  <span class="font-body-sm text-body-sm text-outline">(128)</span>
-                </div>
-                <h3 class="font-headline-sm text-[18px] leading-tight text-on-surface group-hover:text-primary transition-colors">
-                  {{ product.title }}
-                </h3>
-                <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1 mt-1">
-                  {{ product.description | strip_html | truncate: 100 }}
-                </p>
-              </div>
-              <div class="pt-3 mt-2 flex items-center justify-between">
-                <div class="flex items-baseline gap-2">
-                  <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">
-                    {{- product.price | money -}}
+        <!-- 3-Column Product Matrix (12 Cards) -->
+        {% paginate collection.products by 12 %}
+          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+            <!-- Card 1: Luna Serum -->
+            {% for product in collection.products %}
+              <article class="group bg-surface-container-lowest rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                <div class="relative w-full aspect-square rounded-xl bg-surface-container-low overflow-hidden mb-4">
+                  <span class="absolute top-3 left-3 z-10">
+                    {% render 'product-badge', product: product %}
                   </span>
-                  <span class="font-body-sm text-body-sm text-outline line-through">
-                    {{- product.compare_at_price | money -}}
-                  </span>
+                  <button
+                    aria-label="Save to Wishlist"
+                    class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface-variant hover:text-tertiary flex items-center justify-center transition-colors shadow-sm"
+                    type="button"
+                  >
+                    <span class="material-symbols-outlined text-[18px]">favorite</span>
+                  </button>
+                  <div
+                    class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                    data-alt="{{ product.title }} - {{ product.description | strip_html | truncate: 100 }}"
+                    style="background-image: url('{{ product.featured_image | img_url: '720x720' }}')"
+                  ></div>
+                  <!-- Quick Add Slide Up Drawer on Hover -->
+                  <div class="absolute inset-x-3 bottom-3 z-10 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 flex items-center gap-2">
+                    <button
+                      class="flex-1 bg-primary text-on-primary py-2.5 rounded-xl font-label-md text-label-md shadow-md hover:bg-primary-container flex items-center justify-center gap-1.5 transition-colors"
+                      type="button"
+                    >
+                      <span class="material-symbols-outlined text-[18px]">shopping_bag</span>
+                      <span>Quick Add</span>
+                    </button>
+                    <button
+                      aria-label="Quick preview"
+                      class="w-10 h-10 bg-surface-container-lowest text-on-surface rounded-xl flex items-center justify-center shadow-md hover:text-primary transition-colors"
+                      type="button"
+                    >
+                      <span class="material-symbols-outlined text-[18px]">visibility</span>
+                    </button>
+                  </div>
                 </div>
-                {% if product.available %}
-                  <span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2.5 py-1 rounded-md"
-                    >In Stock</span
-                  >
-                {% else %}
-                  <span class="font-label-sm text-label-sm bg-red-400/80 text-red-700 px-2.5 py-1 rounded-md"
-                    >Out of Stock</span
-                  >
-                {% endif %}
-              </div>
-            </article>
-          {% endfor %}
-        </div>
-        <!-- Pagination & Load More Block -->
-        <div class="mt-12 flex flex-col items-center justify-center gap-6">
-          <div class="flex items-center gap-2">
-            {% if paginate.previous %}
-              <a
-                aria-label="Previous Page"
-                class="w-10 h-10 rounded-xl bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container flex items-center justify-center transition-colors"
-                href="{{ paginate.previous.url }}"
-              >
-                <span class="material-symbols-outlined text-[20px]">chevron_left</span>
-              </a>
-            {% endif %}
-
-            {% for part in paginate.parts %}
-              {% if part.is_link %}
-                <a
-                  class="w-10 h-10 rounded-xl bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container font-label-md text-label-md flex items-center justify-center transition-colors"
-                  href="{{ part.url }}"
-                >
-                  {{ part.title }}
-                </a>
-              {% else %}
-                {% assign title_number = part.title | plus: 0 %}
-                {% if title_number != 0 %}
-                  <button
-                    class="w-10 h-10 rounded-xl bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center shadow-sm"
-                    type="button"
-                  >
-                    {{ part.title }}
-                  </button>
-                {% else %}
-                  <button
-                    class="w-10 h-10 rounded-xl bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container font-label-md text-label-md flex items-center justify-center transition-colors"
-                    type="button"
-                  >
-                    {{ part.title }}
-                  </button>
-                {% endif %}
-              {% endif %}
+                <div>
+                  <div class="flex items-center gap-1 text-[#D9822B] mb-1">
+                    <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;"
+                      >star</span
+                    >
+                    <span class="font-label-sm text-label-sm font-bold text-on-surface">4.9</span>
+                    <span class="font-body-sm text-body-sm text-outline">(128)</span>
+                  </div>
+                  <h3 class="font-headline-sm text-[18px] leading-tight text-on-surface group-hover:text-primary transition-colors">
+                    {{ product.title }}
+                  </h3>
+                  <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1 mt-1">
+                    {{ product.description | strip_html | truncate: 100 }}
+                  </p>
+                </div>
+                <div class="pt-3 mt-2 flex items-center justify-between">
+                  <div class="flex items-baseline gap-2">
+                    <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">
+                      {{- product.price | money -}}
+                    </span>
+                    <span class="font-body-sm text-body-sm text-outline line-through">
+                      {{- product.compare_at_price | money -}}
+                    </span>
+                  </div>
+                  {% if product.available %}
+                    <span class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container px-2.5 py-1 rounded-md"
+                      >In Stock</span
+                    >
+                  {% else %}
+                    <span class="font-label-sm text-label-sm bg-red-400/80 text-red-700 px-2.5 py-1 rounded-md"
+                      >Out of Stock</span
+                    >
+                  {% endif %}
+                </div>
+              </article>
             {% endfor %}
-
-            {% if paginate.next %}
-              <a
-                aria-label="Next Page"
-                class="w-10 h-10 rounded-xl bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container flex items-center justify-center transition-colors"
-                href="{{ paginate.next.url }}"
-              >
-                <span class="material-symbols-outlined text-[20px]">chevron_right</span>
-              </a>
-            {% endif %}
           </div>
-        </div>
-      {% endpaginate %}
-    </section>
-  </div>
+          <!-- Pagination & Load More Block -->
+          <div class="mt-12 flex flex-col items-center justify-center gap-6">
+            <div class="flex items-center gap-2">
+              {% if paginate.previous %}
+                <a
+                  aria-label="Previous Page"
+                  class="w-10 h-10 rounded-xl bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container flex items-center justify-center transition-colors"
+                  href="{{ paginate.previous.url }}"
+                >
+                  <span class="material-symbols-outlined text-[20px]">chevron_left</span>
+                </a>
+              {% endif %}
+
+              {% for part in paginate.parts %}
+                {% if part.is_link %}
+                  <a
+                    class="w-10 h-10 rounded-xl bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container font-label-md text-label-md flex items-center justify-center transition-colors"
+                    href="{{ part.url }}"
+                  >
+                    {{ part.title }}
+                  </a>
+                {% else %}
+                  {% assign title_number = part.title | plus: 0 %}
+                  {% if title_number != 0 %}
+                    <button
+                      class="w-10 h-10 rounded-xl bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center shadow-sm"
+                      type="button"
+                    >
+                      {{ part.title }}
+                    </button>
+                  {% else %}
+                    <button
+                      class="w-10 h-10 rounded-xl bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container font-label-md text-label-md flex items-center justify-center transition-colors"
+                      type="button"
+                    >
+                      {{ part.title }}
+                    </button>
+                  {% endif %}
+                {% endif %}
+              {% endfor %}
+
+              {% if paginate.next %}
+                <a
+                  aria-label="Next Page"
+                  class="w-10 h-10 rounded-xl bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container flex items-center justify-center transition-colors"
+                  href="{{ paginate.next.url }}"
+                >
+                  <span class="material-symbols-outlined text-[20px]">chevron_right</span>
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        {% endpaginate %}
+      </section>
+    </div>
+  </collection-filter>
 </main>
+
+<script src="{{ 'collection-filter.js' | asset_url }}" defer></script>
 
 <script>
   function toggleAccordion(groupId, iconId) {
