@@ -1,0 +1,121 @@
+<aside
+  class="w-full lg:w-72 shrink-0 bg-surface-container-lowest rounded-2xl p-6 shadow-sm border-0 sticky top-28 hidden lg:block z-20"
+  id="filterSidebar"
+>
+  <div class="flex items-center justify-between pb-4 border-b-0">
+    <div class="flex items-center gap-2 font-headline-sm text-headline-sm text-on-surface">
+      <span class="material-symbols-outlined text-primary text-[22px]">tune</span>
+      <span>Filters</span>
+    </div>
+    <a
+      href="{{ collection.url }}"
+      class="font-label-md text-label-md text-primary hover:underline transition-all"
+      type="button"
+    >
+      Clear all
+    </a>
+  </div>
+  <!-- Active Filter Badges -->
+  <div class="active-filters flex flex-wrap gap-2 pt-4 pb-4">
+    {% for filter in collection.filters %}
+      {% for value in filter.active_values %}
+        <span class="inline-flex items-center gap-1.5 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-label-sm font-label-sm">
+          {{ value.label }}
+          <a
+            aria-label="Remove filter {{ value.label }}"
+            class="hover:text-tertiary transition-colors flex items-center"
+            href="{{ value.url_to_remove }}"
+          >
+            <span class="material-symbols-outlined text-[14px]">close</span>
+          </a>
+        </span>
+      {% endfor %}
+    {% endfor %}
+  </div>
+  {% for filter in collection.filters %}
+    {% if filter.type == 'list' %}
+      <div class="py-4 border-t-0 space-y-3">
+        <button
+          class="w-full flex items-center justify-between font-label-lg text-label-lg text-on-surface font-semibold text-left"
+          onclick="toggleAccordion('{{ filter.label | downcase }}-group', '{{ filter.label | downcase }}-icon')"
+          type="button"
+        >
+          <span>{{ filter.label }}</span>
+          <span
+            class="material-symbols-outlined text-on-surface-variant text-[20px] transition-transform duration-200"
+            id="{{ filter.label | downcase }}-icon"
+            >expand_less</span
+          >
+        </button>
+        <div
+          class="space-y-2.5 font-body-sm text-body-sm text-on-surface-variant"
+          id="{{ filter.label | downcase }}-group"
+        >
+          {% for value in filter.values %}
+            <label class="flex items-center justify-between cursor-pointer group hover:text-primary transition-colors">
+              <span class="flex items-center gap-2.5">
+                <input
+                  class="w-4 h-4 rounded text-primary accent-primary bg-surface-container focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                  type="checkbox"
+                  id="{{ value.param_name }}-{{ value.value | handle }}"
+                  name="{{ value.label | handle }}"
+                  data-add-url="{{ value.url_to_add }}"
+                  data-remove-url="{{ value.url_to_remove }}"
+                  data-param="{{ value.param_name }}"
+                  data-value="{{ value.value }}"
+                  {% if value.active %}
+                    checked
+                  {% endif %}
+                />
+                <span class="group-hover:text-primary">{{ value.label }}</span>
+              </span>
+              <span class="font-label-sm text-label-sm text-outline">({{ value.count }})</span>
+            </label>
+          {% endfor %}
+        </div>
+      </div>
+    {% elsif filter.type == 'price_range' %}
+      {% render 'price-range', filter: filter %}
+    {% endif %}
+  {% endfor %}
+
+  <!-- Filter: Tone / Botanical Element Swatches -->
+  {% comment %}
+    <div class="py-4 border-t-0 space-y-3">
+      <span class="block font-label-lg text-label-lg text-on-surface font-semibold">Earthy Tones</span>
+      <div class="flex items-center gap-3 pt-1">
+        <button
+          aria-label="Tone Linen Sand"
+          class="w-7 h-7 rounded-full bg-[#E5D3B3] shadow-sm hover:scale-110 transition-transform"
+          type="button"
+        ></button>
+        <button
+          aria-label="Tone Sage Mint"
+          class="w-7 h-7 rounded-full bg-[#A8D5BA] shadow-sm ring-2 ring-primary ring-offset-2 scale-110 transition-transform"
+          type="button"
+        ></button>
+        <button
+          aria-label="Tone Deep Forest"
+          class="w-7 h-7 rounded-full bg-[#3E5F43] shadow-sm hover:scale-110 transition-transform"
+          type="button"
+        ></button>
+        <button
+          aria-label="Tone Warm Amber"
+          class="w-7 h-7 rounded-full bg-[#D9822B] shadow-sm hover:scale-110 transition-transform"
+          type="button"
+        ></button>
+        <button
+          aria-label="Tone Soft Oat"
+          class="w-7 h-7 rounded-full bg-[#F4E8C1] shadow-sm hover:scale-110 transition-transform"
+          type="button"
+        ></button>
+      </div>
+    </div>
+  {% endcomment %}
+</aside>
+
+{% schema %}
+{
+  "name": "Collections Sidebar"
+}
+{% endschema %}
