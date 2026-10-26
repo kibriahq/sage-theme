@@ -30,3 +30,19 @@ window.addEventListener('load', () => {
         carouselNextBtn.querySelector('svg').remove();
     }
 });
+
+
+window.addEventListener('load', () => {
+    const productCountElement = document.querySelector('#product-count');
+
+    const url = new URL(location.href);
+
+    const currentPage = Number(url.searchParams.get('page')) || 1;
+    const perPage = 12;
+
+    const start = (currentPage - 1) * perPage + 1;
+    const end = start + perPage - 1;
+    const total = Number(productCountElement.dataset.total);
+
+    productCountElement.textContent = `${start}-${end > total ? end + (total - end) : end}`;
+})
