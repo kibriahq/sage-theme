@@ -74,13 +74,14 @@
                       <span class="material-symbols-outlined text-[18px]">shopping_bag</span>
                       <span>Quick Add</span>
                     </button>
-                    <button
+                    <a
                       aria-label="Quick preview"
                       class="w-10 h-10 bg-surface-container-lowest text-on-surface rounded-xl flex items-center justify-center shadow-md hover:text-primary transition-colors"
-                      type="button"
+                      target="_blank"
+                      href="{{ product.url }}"
                     >
                       <span class="material-symbols-outlined text-[18px]">visibility</span>
-                    </button>
+                    </a>
                   </div>
                 </div>
                 <div>
@@ -92,7 +93,7 @@
                     <span class="font-body-sm text-body-sm text-outline">(128)</span>
                   </div>
                   <h3 class="font-headline-sm text-[18px] leading-tight text-on-surface group-hover:text-primary transition-colors">
-                    {{ product.title }}
+                    <a href="{{ product.url }}" class="hover:underline">{{ product.title }}</a>
                   </h3>
                   <p class="font-body-sm text-body-sm text-on-surface-variant line-clamp-1 mt-1">
                     {{ product.description | strip_html | truncate: 100 }}
