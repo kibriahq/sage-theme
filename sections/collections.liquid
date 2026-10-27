@@ -7,27 +7,34 @@
       <!-- LEFT SIDEBAR: FILTERS DESKTOP -->
       {% content_for 'block', type: 'collections-sidebar', id: 'collections-sidebar' %}
       <!-- RIGHT PRODUCT AREA -->
-      <section class="collection-inner flex-1 w-full">
+      <section class="flex-1 w-full">
         <!-- Top Toolbar -->
         <div class="bg-surface-container-lowest rounded-2xl p-4 mb-6 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div class="font-body-sm text-body-sm text-on-surface-variant self-start sm:self-center">
+          <div class="result-count font-body-sm text-body-sm text-on-surface-variant self-start sm:self-center">
             Showing
-            <span id="product-count" data-total="{{ collection.products.size }}" class="font-semibold text-on-surface">-</span>
+            <span id="product-count" data-total="{{ collection.products.size }}" class="font-semibold text-on-surface"
+              >-</span
+            >
             of
             <span class="font-semibold text-on-surface">{{ collection.products.size }}</span>
             results
           </div>
           <div class="flex items-center gap-4 w-full sm:w-auto justify-between sm:justify-end">
+            {% assign sort_by = collection.sort_by | default: collection.default_sort_by %}
             <!-- Sort By Select -->
             <div class="flex items-center gap-2">
-              <span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Sort by:</span>
+              <label for="sort-by" class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Sort by:</label>
               <div class="relative">
-                <select class="appearance-none bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md py-2 pl-3 pr-8 rounded-xl cursor-pointer focus:outline-none transition-colors">
-                  <option>Featured</option>
-                  <option>Best selling</option>
-                  <option>Price: low to high</option>
-                  <option>Price: high to low</option>
-                  <option>Newest arrivals</option>
+                <select id="sort-by" name="sort_by" class="appearance-none bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md py-2 pl-3 pr-8 rounded-xl cursor-pointer focus:outline-none transition-colors">
+                  {% comment %} {% for option in collection.sort_options %} {% endcomment %}
+                  {% comment %} <option value="{{ option.value }}" {% if option.value == sort_by %}selected{% endif %}>{{ option.name }}</option> {% endcomment %}
+                  <option value="title-ascending" {% if "title-ascending" == sort_by %}selected{% endif %}>Default</option>
+                  <option value="best-selling" {% if "best-selling" == sort_by %}selected{% endif %}>Best selling</option>
+                  <option value="best-selling" {% if "best-selling" == sort_by %}selected{% endif %}>Best selling</option>
+                  <option value="price-ascending" {% if "price-ascending" == sort_by %}selected{% endif %}>Price: low to high</option>
+                  <option value="price-descending" {% if "price-descending" == sort_by %}selected{% endif %}>Price: high to low</option>
+                  <option value="created-ascending" {% if "created-ascending" == sort_by %}selected{% endif %}>Newest arrivals</option>
+                  <option value="created-descending" {% if "created-descending" == sort_by %}selected{% endif %}>Oldest arrivals</option>
                 </select>
                 <span class="material-symbols-outlined absolute right-2 top-2.5 text-[18px] pointer-events-none text-on-surface-variant"
                   >expand_more</span
@@ -38,7 +45,7 @@
         </div>
         <!-- 3-Column Product Matrix (12 Cards) -->
         {% paginate collection.products by 12 %}
-          <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div class="collection-inner grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
             <!-- Card 1: Luna Serum -->
             {% for product in collection.products %}
               <article class="group bg-surface-container-lowest rounded-2xl p-4 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
