@@ -1,0 +1,44 @@
+<!-- Top Breadcrumb & Back Navigation -->
+<div class="w-full max-w-7xl mx-auto px-margin-mobile lg:px-margin pt-8 pb-2">
+  <div class="flex flex-wrap items-center justify-between gap-y-2">
+    <nav
+      aria-label="Breadcrumb"
+      class="flex items-center gap-2 font-label-md text-label-md text-on-surface-variant"
+    >
+      <a class="hover:text-primary transition-colors" href="{{ routes.root_url }}">Home</a>
+      <span class="text-outline-variant">/</span>
+      <a class="hover:text-primary transition-colors" href="{{ routes.all_products_collection_url }}">All Products</a>
+      <span class="text-outline-variant">/</span>
+      {% unless product.collections.first == nil %}
+      <a class="hover:text-primary transition-colors" href="{{ product.collections.first.url }}">
+        {{- product.collections.first.title -}}
+      </a>
+      <span class="text-outline-variant">/</span>
+      {% endunless %}
+      <span class="text-on-surface font-semibold">{{ product.title }}</span>
+    </nav>
+    <button
+      class="inline-flex items-center gap-1 font-label-md text-label-md text-secondary hover:text-primary transition-colors group cursor-pointer"
+      onclick="window.history.back()"
+    >
+      <span
+        class="material-symbols-outlined text-[18px] transition-transform group-hover:-translate-x-1"
+        >arrow_back</span
+      >
+      <span>Back to shop</span>
+    </button>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Breadcrumb",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Breadcrumb",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}
