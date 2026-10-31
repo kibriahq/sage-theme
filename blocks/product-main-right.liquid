@@ -1,0 +1,220 @@
+<div class="lg:col-span-5 flex flex-col gap-5 lg:sticky lg:top-32" {{ block.shopify_attributes }}>
+  <!-- Tag & Header -->
+  <div>
+    {% if product.category %}
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wider mb-2">
+        <span class="material-symbols-outlined text-[14px]">psychiatry</span>
+        {{ product.category }}
+      </span>
+    {% endif %}
+    <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-1 mb-2">
+      {{ product.title }}
+    </h1>
+    <!-- Rating & Stock Pill -->
+    <div class="flex flex-wrap items-center gap-3 pt-1">
+      <div class="flex items-center gap-1 text-primary">
+        <span
+          class="material-symbols-outlined text-[18px]"
+          style="font-variation-settings: 'FILL' 1;"
+          >star</span
+        >
+        <span
+          class="material-symbols-outlined text-[18px]"
+          style="font-variation-settings: 'FILL' 1;"
+          >star</span
+        >
+        <span
+          class="material-symbols-outlined text-[18px]"
+          style="font-variation-settings: 'FILL' 1;"
+          >star</span
+        >
+        <span
+          class="material-symbols-outlined text-[18px]"
+          style="font-variation-settings: 'FILL' 1;"
+          >star</span
+        >
+        <span
+          class="material-symbols-outlined text-[18px]"
+          style="font-variation-settings: 'FILL' 1;"
+          >star_half</span
+        >
+        <a
+          class="ml-1 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors underline decoration-outline-variant underline-offset-4"
+          href="#reviews"
+          >4.9 (128 reviews)</a
+        >
+      </div>
+      <span class="text-outline-variant text-sm">|</span>
+
+      {% if product.available %}
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+          <span>In Stock • Ships in 24h</span>
+        </div>
+      {% else %}
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+          <span class="w-2 h-2 rounded-full bg-tertiary"></span>
+          <span>Out of Stock</span>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <!-- Pricing Block -->
+  <div class="flex flex-col gap-1 pb-2">
+    <div class="flex items-baseline gap-3">
+      <span
+        class="font-headline-md text-headline-md font-bold text-on-surface"
+        id="display-price"
+        >{{ product.price | money }}</span
+      >
+      <span class="text-headline-sm text-headline-sm line-through text-outline font-normal">{{ product.compare_at_price | money }}</span>
+      <span
+        class="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wide"
+      >
+        Save {{ product.compare_at_price | minus: product.price | money }}
+      </span>
+    </div>
+    <p class="font-body-sm text-body-sm text-on-surface-variant">
+      Taxes included. Carbon-neutral shipping calculated at checkout.
+    </p>
+  </div>
+
+  <!-- Editorial Description -->
+  <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+    {{ product.description | strip_html  }}
+  </p>
+
+  <!-- Size Selector -->
+  <div class="flex flex-col gap-2 pt-1">
+    <div class="flex items-center justify-between">
+      <span class="font-label-md text-label-md text-on-surface"
+        >Size: <strong id="selected-size-label">50ml / 1.7 fl oz (Standard Ritual)</strong></span
+      >
+      <button
+        class="font-label-sm text-label-sm text-secondary hover:text-primary underline decoration-outline-variant underline-offset-4 transition-colors"
+        type="button"
+      >
+        Size &amp; Ritual Guide
+      </button>
+    </div>
+    <div class="grid grid-cols-4 gap-2" id="size-options">
+      <button
+        class="py-2.5 px-2 rounded-xl text-center font-label-md text-label-md transition-all bg-surface-container text-on-surface-variant hover:bg-surface-container-high"
+        data-price="$38.00"
+        data-size="30ml"
+        type="button"
+      >
+        30ml
+      </button>
+      <button
+        class="py-2.5 px-2 rounded-xl text-center font-label-md text-label-md transition-all bg-primary-container text-on-primary-container shadow-sm ring-2 ring-primary"
+        data-price="$54.00"
+        data-size="50ml"
+        type="button"
+      >
+        50ml
+      </button>
+      <button
+        class="py-2.5 px-2 rounded-xl text-center font-label-md text-label-md transition-all bg-surface-container text-on-surface-variant hover:bg-surface-container-high"
+        data-price="$88.00"
+        data-size="100ml"
+        type="button"
+      >
+        100ml
+      </button>
+      <button
+        class="py-2.5 px-2 rounded-xl text-center font-label-md text-label-md bg-surface-container-highest/60 text-outline cursor-not-allowed line-through relative"
+        disabled=""
+        type="button"
+      >
+        Sample 10ml
+      </button>
+    </div>
+  </div>
+  <!-- Add to Cart + Quantity Stepper -->
+  <div class="flex flex-col sm:flex-row items-stretch gap-3 pt-2">
+    <!-- Stepper -->
+    <div
+      class="flex items-center justify-between bg-surface-container-lowest rounded-xl shadow-sm px-4 py-3 min-w-[120px]"
+    >
+      <button
+        aria-label="Decrease quantity"
+        class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center"
+        id="qty-minus"
+        type="button"
+      >
+        <span class="material-symbols-outlined text-[18px]">remove</span>
+      </button>
+      <span class="font-label-lg text-label-lg text-on-surface font-semibold" id="qty-display">1</span>
+      <button
+        aria-label="Increase quantity"
+        class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center"
+        id="qty-plus"
+        type="button"
+      >
+        <span class="material-symbols-outlined text-[18px]">add</span>
+      </button>
+    </div>
+    <!-- Main Add to Cart Button -->
+    <button
+      class="flex-1 bg-primary text-on-primary hover:bg-primary-container font-label-lg text-label-lg py-3.5 px-6 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 font-medium hover:shadow-md active:scale-[0.99]"
+      id="add-to-cart-hero"
+      type="button"
+    >
+      <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+      <span>Add to Cart</span>
+    </button>
+    <!-- Buy It Now Button -->
+    <button
+      class="bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed font-label-lg text-label-lg py-3.5 px-6 rounded-xl transition-all font-semibold flex items-center justify-center"
+      type="button"
+    >
+      Buy Now
+    </button>
+  </div>
+
+  <!-- Stock Urgency Warning -->
+  <div class="flex flex-col gap-1.5 pt-1">
+    <div class="flex items-center justify-between font-label-sm text-label-sm">
+      <span class="text-tertiary font-semibold flex items-center gap-1">
+        <span class="material-symbols-outlined text-[16px]">local_fire_department</span>
+        Low Batch Allocation
+      </span>
+      <span class="text-on-surface-variant font-medium">Only 6 bottles remaining from Autumn harvest</span>
+    </div>
+    <div class="w-full bg-surface-container-high rounded-full h-1.5 overflow-hidden">
+      <div
+        class="bg-tertiary-container h-full rounded-full transition-all duration-1000"
+        style="width: 22%;"
+      ></div>
+    </div>
+  </div>
+
+  <!-- Shipping Assurance Card -->
+  <div class="rounded-xl bg-surface-container-low p-4 flex items-start gap-3">
+    <span class="material-symbols-outlined text-primary text-[22px] mt-0.5">local_shipping</span>
+    <div class="font-body-sm text-body-sm text-on-surface-variant leading-snug">
+      <p>
+        <strong class="text-on-surface font-medium">Order within 3 hrs 24 mins</strong> to receive by
+        <strong
+          class="text-on-surface"
+          >Thursday, Oct 24</strong
+        >.
+      </p>
+      <p class="text-on-surface-variant/80 pt-0.5">Free carbon-neutral courier delivery applied at checkout.</p>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Right Side",
+  "tag": null,
+  "settings": [],
+  "presets": [
+    {
+      "name": "Product Right Side"
+    }
+  ]
+}
+{% endschema %}
