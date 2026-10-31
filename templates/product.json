@@ -21,6 +21,10 @@
       "type": "product-content",
       "settings": {}
     },
+    "product-faq": {
+      "type": "product-faq",
+      "settings": {}
+    },
     "placeholder": {
       "type": "placeholder",
       "settings": {}
@@ -30,6 +34,7 @@
     "breadcrumbs",
     "main",
     "product-content",
+    "product-faq",
     "placeholder"
   ]
 }
