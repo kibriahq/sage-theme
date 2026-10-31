@@ -1,0 +1,33 @@
+{% if product.metafields.custom.product_faqs.value %}
+<section class="w-full pb-8 mt-8">
+  <h3 class="w-full mx-8 px-5 text-3xl font-semibold border-l-5 border-primary">FAQs</h3>
+  <!-- Clean Editorial Accordion -->
+  <div class="flex flex-col gap-2 pt-2 mt-8 px-8">
+    {% for faq in product.metafields.custom.product_faqs.value %}
+      <details class="group bg-surface-container-lowest rounded-xl p-4 shadow-sm transition-all open:bg-surface-container-lowest">
+        <summary
+          class="flex items-center justify-between cursor-pointer list-none font-label-md text-label-md text-on-surface font-semibold"
+        >
+          <span class="flex items-center gap-2">
+            {{ faq.question }}
+          </span>
+          <span
+            class="material-symbols-outlined text-outline transition-transform duration-300 group-open:rotate-180"
+            >expand_more</span
+          >
+        </summary>
+        <div class="pt-3 font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+          {{ faq.answer }}
+        </div>
+      </details>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product FAQ",
+  "settings": []
+}
+{% endschema %}
