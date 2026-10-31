@@ -1,0 +1,16 @@
+<!-- Product Main Section -->
+<section class="w-full max-w-7xl mx-auto px-margin-mobile lg:px-margin py-6 lg:py-10">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+    <!-- Gallery Column (7 cols on large desktop ~58%) -->
+    {% content_for 'block', type: 'product-main-image', id: 'product-main-image' %}
+    <!-- Product Info Sticky Column (5 cols) -->
+    {% content_for 'block', type: 'product-main-right', id: 'product-main-right' %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Main",
+  "settings": []
+}
+{% endschema %}
