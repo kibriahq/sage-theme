@@ -29,6 +29,10 @@
       "type": "product-reviews",
       "settings": {}
     },
+    "product-related": {
+      "type": "product-related",
+      "settings": {}
+    },
     "placeholder": {
       "type": "placeholder",
       "settings": {}
@@ -40,6 +44,7 @@
     "product-content",
     "product-faq",
     "product-reviews",
+    "product-related",
     "placeholder"
   ]
 }
