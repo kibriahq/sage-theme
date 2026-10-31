@@ -1,0 +1,103 @@
+<div class="lg:col-span-7 flex flex-col-reverse md:flex-row gap-4 items-start" {{ block.shopify_attributes }}>
+  <!-- Thumbnail Strip -->
+  <div
+    class="flex md:flex-col gap-3 overflow-x-auto md:overflow-visible w-full md:w-20 shrink-0 pb-2 md:pb-0"
+    id="gallery-thumbs"
+  >
+    {% for image in product.images %}
+      <button
+        class="relative w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden bg-surface-container-lowest shadow-sm p-1 transition-all ring-2 ring-primary scale-100 gallery-thumb active"
+        data-img-idx="{{ forloop.index0 }}"
+        type="button"
+      >
+        <img
+          class="w-full h-full object-cover rounded-lg"
+          data-alt="Macro close-up shot of amber glass dropper bottle holding golden herbal facial elixir with liquid droplet falling onto smooth pale stone pedestal surrounded by fresh green eucalyptus leaves in soft morning light."
+          src="{{ image | img_url: '2048x2048' }}"
+        />
+      </button>
+    {% endfor %}
+  </div>
+  <!-- Main Image Stage -->
+  <div
+    class="relative w-full rounded-2xl bg-surface-container-lowest shadow-sm overflow-hidden group flex-1 aspect-[4/5] flex items-center justify-center"
+  >
+    <img
+      class="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+      data-alt="Macro close-up shot of amber glass dropper bottle holding golden herbal facial elixir with liquid droplet falling onto smooth pale stone pedestal surrounded by fresh green eucalyptus leaves in soft morning light."
+      id="main-product-img"
+      src="{{ product.featured_image | img_url: '2048x2048' }}"
+    />
+    <!-- Coral Sale Badge -->
+    <div
+      class="absolute top-5 left-5 bg-tertiary text-on-tertiary font-label-sm text-label-sm tracking-wider uppercase px-3 py-1.5 rounded-full shadow-sm"
+    >
+      Save 20%
+    </div>
+    <!-- Wishlist & Action Controls -->
+    <div class="absolute top-5 right-5 flex flex-col gap-2">
+      <button
+        aria-label="Save to Wishlist"
+        class="w-11 h-11 rounded-full bg-surface-container-lowest/90 backdrop-blur-md shadow-md text-on-surface-variant hover:text-tertiary flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
+        id="wishlist-btn"
+        type="button"
+      >
+        <span class="material-symbols-outlined text-[22px]" id="wishlist-icon">favorite_border</span>
+      </button>
+    </div>
+    <!-- Bottom Left Batch Quality Pill -->
+    <div
+      class="absolute bottom-5 left-5 bg-surface/90 backdrop-blur-md text-on-surface-variant font-label-sm text-label-sm px-3.5 py-1.5 rounded-full shadow-sm flex items-center gap-1.5"
+    >
+      <span class="material-symbols-outlined text-primary text-[16px]">verified</span>
+      <span>100% Certified Organic • Batch #042 Cold Pressed</span>
+    </div>
+    <!-- Bottom Right Expand Button -->
+    <button
+      aria-label="Expand view"
+      class="absolute bottom-5 right-5 w-10 h-10 rounded-full bg-surface/90 backdrop-blur-md shadow-md text-on-surface-variant hover:text-primary flex items-center justify-center transition-colors"
+      type="button"
+    >
+      <span class="material-symbols-outlined text-[20px]">zoom_in</span>
+    </button>
+    <!-- Nav Arrows -->
+    <button
+      aria-label="Previous image"
+      class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-surface"
+      id="prev-img-btn"
+      type="button"
+    >
+      <span class="material-symbols-outlined text-[20px]">chevron_left</span>
+    </button>
+    <button
+      aria-label="Next image"
+      class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-on-surface shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:bg-surface"
+      id="next-img-btn"
+      type="button"
+    >
+      <span class="material-symbols-outlined text-[20px]">chevron_right</span>
+    </button>
+    <!-- Carousel Dots -->
+    <div class="absolute bottom-16 left-1/2 -translate-x-1/2 flex items-center gap-1.5">
+      <span class="w-6 h-1.5 rounded-full bg-primary transition-all"></span>
+      <span class="w-1.5 h-1.5 rounded-full bg-surface-container-highest transition-all"></span>
+      <span class="w-1.5 h-1.5 rounded-full bg-surface-container-highest transition-all"></span>
+      <span class="w-1.5 h-1.5 rounded-full bg-surface-container-highest transition-all"></span>
+      <span class="w-1.5 h-1.5 rounded-full bg-surface-container-highest transition-all"></span>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Image",
+  "tag": null,
+  "settings": [],
+  "presets": [
+    {
+      "name": "Product Image",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}
