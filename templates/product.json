@@ -13,6 +13,10 @@
       "type": "product-breadcrumb",
       "settings": {}
     },
+    "main": {
+      "type": "product-main",
+      "settings": {}
+    },
     "placeholder": {
       "type": "placeholder",
       "settings": {}
@@ -20,6 +24,7 @@
   },
   "order": [
     "breadcrumbs",
+    "main",
     "placeholder"
   ]
 }
