@@ -25,6 +25,10 @@
       "type": "product-faq",
       "settings": {}
     },
+    "product-reviews": {
+      "type": "product-reviews",
+      "settings": {}
+    },
     "placeholder": {
       "type": "placeholder",
       "settings": {}
@@ -35,6 +39,7 @@
     "main",
     "product-content",
     "product-faq",
+    "product-reviews",
     "placeholder"
   ]
 }
