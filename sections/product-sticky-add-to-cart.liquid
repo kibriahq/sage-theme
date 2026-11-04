@@ -9,18 +9,27 @@
         <img
           class="w-full h-full object-cover"
           data-alt="Macro close-up shot of amber glass dropper bottle holding golden herbal facial elixir with liquid droplet falling onto smooth pale stone pedestal surrounded by fresh green eucalyptus leaves in soft morning light."
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm6rQ8S1X49MPW-lFzTYPXYNNP06-iwO0k25ginx28gVvXZ7zF7G-0pqOOS0kEB955KqGYa__b549-dKHAqtyBwpc5PXWWjQCTphCYTG5AzFq-OELemzpBgdVZPkaczXAqsUxxKlNe_7x1oIvNcULibs1rfiR42NbV2XY_v5rdIDZ-34Dp4ydcNurG5z4jdNg2RweqysAp8nMa01isDpIa8xfy0N60IxgcKKU5xCEZNPUywvFTEL_EkA"
+          src="{{ product.featured_image | img_url: '600x600' }}"
         />
       </div>
       <div class="hidden sm:block">
-        <h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Luna Hydrate &amp; Renew Serum</h4>
-        <span class="font-body-sm text-body-sm text-on-surface-variant">50ml / 1.7 fl oz • Batch #042</span>
+        <h4 class="font-label-lg text-label-lg text-on-surface font-semibold">{{ product.title }}</h4>
+        <span class="font-body-sm text-body-sm text-on-surface-variant">
+          {% if product.selected_or_first_available_variant.title != 'Default Title' %}
+            {{ product.selected_or_first_available_variant.title }} •
+          {% endif %}
+          <span class="capitalize">{{ product.vendor }}</span>
+        </span>
       </div>
     </div>
     <div class="flex items-center gap-4">
       <div class="text-right">
-        <span class="font-headline-sm text-headline-sm font-bold text-on-surface">$54.00</span>
-        <span class="text-xs line-through text-outline block sm:inline ml-1">$68.00</span>
+        <span class="font-headline-sm text-headline-sm font-bold text-on-surface">
+          {{- product.selected_or_first_available_variant.price | money -}}
+        </span>
+        <span class="text-xs line-through text-outline block sm:inline ml-1">
+          {{- product.selected_or_first_available_variant.compare_at_price | money -}}
+        </span>
       </div>
       <button
         class="bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md py-3 px-6 rounded-xl shadow-sm transition-all flex items-center gap-2 font-medium"
