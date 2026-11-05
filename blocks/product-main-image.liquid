@@ -88,6 +88,44 @@
   </div>
 </div>
 
+<script>
+  // Simple client-side micro-interactions
+  (function () {
+    // Gallery Thumb Switching
+    const thumbs = document.querySelectorAll('.gallery-thumb');
+    const mainImg = document.getElementById('main-product-img');
+    thumbs.forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        thumbs.forEach((t) => {
+          t.classList.remove('ring-2', 'ring-primary', 'opacity-100');
+          t.classList.add('opacity-75');
+        });
+        thumb.classList.add('ring-2', 'ring-primary', 'opacity-100');
+        thumb.classList.remove('opacity-75');
+        const img = thumb.querySelector('img');
+        if (img && mainImg) {
+          mainImg.src = img.src;
+          if (img.getAttribute('data-alt')) {
+            mainImg.setAttribute('data-alt', img.getAttribute('data-alt'));
+          }
+        }
+      });
+    });
+
+    // Wishlist Toggle
+    const wishBtn = document.getElementById('wishlist-btn');
+    const wishIcon = document.getElementById('wishlist-icon');
+    let isWished = false;
+    if (wishBtn && wishIcon) {
+      wishBtn.addEventListener('click', () => {
+        isWished = !isWished;
+        wishIcon.textContent = isWished ? 'favorite' : 'favorite_border';
+        wishIcon.style.color = isWished ? '#95423c' : '';
+      });
+    }
+  })();
+</script>
+
 {% schema %}
 {
   "name": "Product Image",
