@@ -1,9 +1,11 @@
-<div class="lg:col-span-5 flex flex-col gap-5 lg:sticky lg:top-32" {{ block.shopify_attributes }}>
+<div class="product lg:col-span-5 flex flex-col gap-5 lg:sticky lg:top-32" {{ block.shopify_attributes }}>
   <!-- Tag & Header -->
   <div>
     {% if product.category %}
       <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm uppercase tracking-wider mb-2">
-        <span class="material-symbols-outlined text-[14px]">psychiatry</span>
+        <span class="text-[18px] font-bold text-on-secondary-container">
+          <ion-icon name="cube-outline"></ion-icon>
+        </span>
         {{ product.category }}
       </span>
     {% endif %}
@@ -65,14 +67,24 @@
       <span
         class="font-headline-md text-headline-md font-bold text-on-surface"
         id="display-price"
-        >{{ product.price | money }}</span
       >
-      <span class="text-headline-sm text-headline-sm line-through text-outline font-normal">{{ product.compare_at_price | money }}</span>
-      <span
-        class="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wide"
-      >
-        Save {{ product.compare_at_price | minus: product.price | money }}
+        {{- product.selected_or_first_available_variant.price | money -}}
       </span>
+      <span class="text-headline-sm text-headline-sm line-through text-outline font-normal">
+        {{- product.selected_or_first_available_variant.compare_at_price | money -}}
+      </span>
+      {% if product.selected_or_first_available_variant.compare_at_price %}
+        <span
+          class="bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wide"
+        >
+          Save
+          {{
+            product.selected_or_first_available_variant.compare_at_price
+            | minus: product.selected_or_first_available_variant.price
+            | money
+          }}
+        </span>
+      {% endif %}
     </div>
     <p class="font-body-sm text-body-sm text-on-surface-variant">
       Taxes included. Carbon-neutral shipping calculated at checkout.
@@ -81,56 +93,45 @@
 
   <!-- Editorial Description -->
   <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-    {{ product.description | strip_html  }}
+    {{ product.description | strip_html }}
   </p>
 
-  <!-- Size Selector -->
-  <div class="flex flex-col gap-2 pt-1">
-    <div class="flex items-center justify-between">
-      <span class="font-label-md text-label-md text-on-surface"
-        >Size: <strong id="selected-size-label">50ml / 1.7 fl oz (Standard Ritual)</strong></span
-      >
-      <button
-        class="font-label-sm text-label-sm text-secondary hover:text-primary underline decoration-outline-variant underline-offset-4 transition-colors"
-        type="button"
-      >
-        Size &amp; Ritual Guide
-      </button>
-    </div>
-    <div class="grid grid-cols-4 gap-2" id="size-options">
-      <button
-        class="py-2.5 px-2 rounded-xl text-center font-label-md text-label-md transition-all bg-surface-container text-on-surface-variant hover:bg-surface-container-high"
-        data-price="$38.00"
-        data-size="30ml"
-        type="button"
-      >
-        30ml
-      </button>
-      <button
-        class="py-2.5 px-2 rounded-xl text-center font-label-md text-label-md transition-all bg-primary-container text-on-primary-container shadow-sm ring-2 ring-primary"
-        data-price="$54.00"
-        data-size="50ml"
-        type="button"
-      >
-        50ml
-      </button>
-      <button
-        class="py-2.5 px-2 rounded-xl text-center font-label-md text-label-md transition-all bg-surface-container text-on-surface-variant hover:bg-surface-container-high"
-        data-price="$88.00"
-        data-size="100ml"
-        type="button"
-      >
-        100ml
-      </button>
-      <button
-        class="py-2.5 px-2 rounded-xl text-center font-label-md text-label-md bg-surface-container-highest/60 text-outline cursor-not-allowed line-through relative"
-        disabled=""
-        type="button"
-      >
-        Sample 10ml
-      </button>
-    </div>
-  </div>
+  {% unless product.has_only_default_variant %}
+    <variant-picker data-section-id="{{ section.id }}">
+      {% for option in product.options_with_values %}
+        <div class="flex flex-col gap-2 pt-1">
+          <div class="flex items-center justify-between">
+            <span class="font-label-md text-label-md text-on-surface">
+              {{ option.name }}: <strong id="selected-size-label">{{ option.selected_value }}</strong>
+            </span>
+          </div>
+          <div class="grid grid-cols-4 gap-2" id="size-options">
+            {% for value in option.values %}
+              <input
+                type="radio"
+                id="{{ option.name }}-{{ value.name }}"
+                name="{{ option.name }}"
+                value="{{ value.variant.id }}"
+                class="hidden peer"
+                {% if option.selected_value == value.name %}
+                  checked
+                {% endif %}
+                {% unless value.available %}
+                  disabled
+                {% endunless %}
+              >
+              <label
+                for="{{ option.name }}-{{ value.name }}"
+                class="py-2.5 px-2 rounded-xl text-center font-label-md text-label-md cursor-pointer {% if value.available %} transition-all {% else %} bg-surface-container-highest/60 text-outline cursor-not-allowed line-through relative {% endif %} {% if option.selected_value == value.name %} bg-primary text-on-primary hover:bg-primary-container {% else %} bg-surface-container text-on-surface-variant hover:bg-surface-container-high {% endif %}"
+              >
+                {{ value.name }}
+              </label>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </variant-picker>
+  {% endunless %}
   <!-- Add to Cart + Quantity Stepper -->
   <div class="flex flex-col sm:flex-row items-stretch gap-3 pt-2">
     <!-- Stepper -->
@@ -145,7 +146,7 @@
       >
         <span class="material-symbols-outlined text-[18px]">remove</span>
       </button>
-      <span class="font-label-lg text-label-lg text-on-surface font-semibold" id="qty-display">1</span>
+      <span class="font-label-lg text-label-lg text-on-surface font-semibold" id="qty-display">5</span>
       <button
         aria-label="Increase quantity"
         class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center"
@@ -205,6 +206,31 @@
     </div>
   </div>
 </div>
+
+<script src="{{ 'variant-picker.js' | asset_url }}" defer></script>
+
+<script>
+  (function () {
+    // Quantity Counter
+    let qty = 1;
+    const qtyDisplay = document.getElementById('qty-display');
+    const qtyMinus = document.getElementById('qty-minus');
+    const qtyPlus = document.getElementById('qty-plus');
+
+    if (qtyMinus && qtyPlus && qtyDisplay) {
+      qtyMinus.addEventListener('click', () => {
+        if (qty > 1) {
+          qty--;
+          qtyDisplay.textContent = qty;
+        }
+      });
+      qtyPlus.addEventListener('click', () => {
+        qty++;
+        qtyDisplay.textContent = qty;
+      });
+    }
+  })();
+</script>
 
 {% schema %}
 {
