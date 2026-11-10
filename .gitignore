@@ -19,5 +19,7 @@ release
 ## Local listings
 listings/
 
+.vscode/
+
 reference-code
 NOTES.md
