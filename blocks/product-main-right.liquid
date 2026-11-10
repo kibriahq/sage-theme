@@ -105,29 +105,59 @@
               {{ option.name }}: <strong id="selected-size-label">{{ option.selected_value }}</strong>
             </span>
           </div>
-          <div class="grid grid-cols-4 gap-2" id="size-options">
-            {% for value in option.values %}
-              <input
-                type="radio"
-                id="{{ option.name }}-{{ value.name }}"
-                name="{{ option.name }}"
-                value="{{ value.variant.id }}"
-                class="hidden peer"
-                {% if option.selected_value == value.name %}
-                  checked
-                {% endif %}
-                {% unless value.available %}
-                  disabled
-                {% endunless %}
-              >
-              <label
-                for="{{ option.name }}-{{ value.name }}"
-                class="py-2.5 px-2 rounded-xl text-center font-label-md text-label-md cursor-pointer {% if value.available %} transition-all {% else %} bg-surface-container-highest/60 text-outline cursor-not-allowed line-through relative {% endif %} {% if option.selected_value == value.name %} bg-primary text-on-primary hover:bg-primary-container {% else %} bg-surface-container text-on-surface-variant hover:bg-surface-container-high {% endif %}"
-              >
-                {{ value.name }}
-              </label>
-            {% endfor %}
-          </div>
+          {% if option.name == 'Color' %}
+            <div class="flex gap-3">
+              {% for value in option.values %}
+                <label
+                  class="w-10 h-10 rounded-full shadow-sm {% if value == option.selected_value %} ring-2 ring-primary ring-offset-2 ring-offset-surface transition-all {% else %} hover:scale-110 transition-transform {% endif %}"
+                  {% if value.swatch.color %}
+                    style="background-color: {{ value.swatch.color }};"
+                  {% else %}
+                    style="background-image: url('{{ value.swatch.image | img_url: '100x100' }}'); background-size: cover; background-position: center;"
+                  {% endif %}
+                  for="{{ option.name }}-{{ value.name }}"
+                >
+                </label>
+                <input
+                  type="radio"
+                  id="{{ option.name }}-{{ value.name }}"
+                  name="{{ option.name }}"
+                  value="{{ value.variant.id }}"
+                  class="hidden peer"
+                  {% if option.selected_value == value.name %}
+                    checked
+                  {% endif %}
+                  {% unless value.available %}
+                    disabled
+                  {% endunless %}
+                >
+              {% endfor %}
+            </div>
+          {% else %}
+            <div class="grid grid-cols-4 gap-2" id="size-options">
+              {% for value in option.values %}
+                <input
+                  type="radio"
+                  id="{{ option.name }}-{{ value.name }}"
+                  name="{{ option.name }}"
+                  value="{{ value.variant.id }}"
+                  class="hidden peer"
+                  {% if option.selected_value == value.name %}
+                    checked
+                  {% endif %}
+                  {% unless value.available %}
+                    disabled
+                  {% endunless %}
+                >
+                <label
+                  for="{{ option.name }}-{{ value.name }}"
+                  class="py-2.5 px-2 rounded-xl text-center font-label-md text-label-md cursor-pointer {% if value.available %} transition-all {% else %} bg-surface-container-highest/60 text-outline cursor-not-allowed line-through relative {% endif %} {% if option.selected_value == value.name %} bg-primary text-on-primary hover:bg-primary-container {% else %} bg-surface-container text-on-surface-variant hover:bg-surface-container-high {% endif %}"
+                >
+                  {{ value.name }}
+                </label>
+              {% endfor %}
+            </div>
+          {% endif %}
         </div>
       {% endfor %}
     </variant-picker>
