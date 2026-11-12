@@ -1,0 +1,320 @@
+<h1>{{ 'cart.title' | t }}</h1>
+
+<form action="{{ routes.cart_update_url }}" method="post">
+  {% for item in cart.items %}
+    <input type="hidden" name="updates[{{ item.key }}]" value="{{ item.quantity | plus: 1 }}">
+  {% endfor %}
+  <button type="submit" class="px-5 py-2 bg-black text-white w-fit rounded-lg mb-4 cursor-pointer">
+    Increase All Quantity by 1
+  </button>
+</form>
+
+<form action="{{ routes.cart_clear_url }}" method="post">
+  <button type="submit" class="px-5 py-2 bg-red-500 text-white w-fit rounded-lg mb-4 cursor-pointer">
+    Clear Cart
+  </button>
+</form>
+
+<!-- Main Two-Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter lg:gap-space-lg items-start">
+  <!-- LEFT COLUMN: Cart Items & Upsells (Approx ~68% width -> 8 cols) -->
+  <div class="lg:col-span-8 flex flex-col gap-space-lg">
+    <!-- Cart Items List Container -->
+    <div class="flex flex-col gap-space-md">
+      {% for item in cart.items %}
+        <article
+          class="bg-surface-container-lowest rounded-2xl p-space-md shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col sm:flex-row gap-space-md items-start sm:items-center relative"
+          id="cart-item-1"
+        >
+          <!-- Product Thumbnail -->
+          <div
+            class="relative w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden bg-surface-container-low flex-shrink-0 group"
+          >
+            <img
+              alt="Luna Hydrate &amp; Renew Serum bottle"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              src="{{ item.image | img_url: '400x' }}"
+            />
+          </div>
+          <!-- Product Details -->
+          <div class="flex-1 flex flex-col justify-between gap-2 min-w-0 w-full">
+            <div class="flex items-start justify-between gap-space-xs">
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span
+                    class="font-label-sm text-label-sm text-secondary uppercase tracking-widest font-semibold"
+                  >
+                    {{- item.vendor -}}
+                  </span>
+                </div>
+                <h2
+                  class="font-headline-sm text-headline-sm text-on-surface hover:text-primary transition-colors cursor-pointer pt-0.5"
+                >
+                  {{ item.title }}
+                </h2>
+                <p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-2 mt-0.5">
+                  {% if item.variant.title != 'Default Title' %}
+                    <span> {{ item.variant.title }}</span>
+                    {% comment %} <span>•</span> {% endcomment %}
+                  {% endif %}
+                  <span class="text-secondary font-medium"></span>
+                </p>
+              </div>
+              <!-- Remove item button -->
+              <a
+                aria-label="Remove Luna Hydrate Serum from cart"
+                class="text-on-surface-variant hover:text-error transition-colors p-1.5 rounded-lg hover:bg-surface-container"
+                href="{{ item.url_to_remove }}"
+              >
+                <span class="material-symbols-outlined text-[20px]">delete</span>
+              </a>
+            </div>
+            <!-- Price & Quantity Row -->
+            <div class="flex items-center justify-between gap-space-sm pt-2">
+              <!-- Stepper -->
+              <div class="flex items-center bg-surface-container-low rounded-xl p-1 shadow-inner">
+                <a
+                  aria-label="Decrease quantity"
+                  class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface hover:bg-surface-container hover:text-primary transition-colors font-bold text-base"
+                  href="{{ routes.cart_change_url }}?quantity={{ item.quantity | minus: 1 }}&line={{ forloop.index }}"
+                >
+                  -
+                </a>
+                <span
+                  class="w-10 text-center font-label-md text-label-md text-on-surface font-semibold select-none"
+                  id="qty-1"
+                >
+                  {{ item.quantity }}
+                </span>
+                <a
+                  aria-label="Increase quantity"
+                  class="w-8 h-8 rounded-lg flex items-center justify-center text-on-surface hover:bg-surface-container hover:text-primary transition-colors font-bold text-base"
+                  href="{{ routes.cart_change_url }}?quantity={{ item.quantity | plus: 1 }}&line={{ forloop.index }}"
+                >
+                  +
+                </a>
+              </div>
+              <!-- Price Breakdown -->
+              <div class="flex items-baseline gap-2 text-right">
+                <span class="font-body-sm text-body-sm text-outline line-through">
+                  {{- item.compare_at_price | money -}}
+                </span>
+                <span
+                  class="font-headline-sm text-headline-sm text-on-surface font-semibold text-primary"
+                  id="price-1"
+                >
+                  {{ item.line_price | money }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+
+      <form action="{{ routes.cart_update_url }}" method="post">
+        <textarea name="note" class="border">{{ cart.note }}</textarea>
+        <button type="submit" class="px-5 py-2 bg-black text-white w-fit rounded-lg mb-4 cursor-pointer">
+          Add Note
+        </button>
+      </form>
+    </div>
+    <!-- Interactive Upsell Ritual Add-ons Carousel / Grid -->
+
+    <!-- Special Packaging & Eco Delivery Instructions (Accordion / Collapsible) -->
+  </div>
+  <!-- RIGHT COLUMN: Sticky Order Summary Card (Approx ~32% width -> 4 cols) -->
+  <aside class="lg:col-span-4 sticky top-28 flex flex-col gap-space-md">
+    <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md relative overflow-hidden">
+      <!-- Heading -->
+      <div class="flex items-center justify-between pb-space-sm border-b border-surface-container">
+        <h2 class="font-headline-sm text-headline-sm text-on-surface font-medium">Order Summary</h2>
+        <span class="material-symbols-outlined text-primary text-[20px]">format_image_left</span>
+      </div>
+      <!-- Promo Code Form -->
+      <div class="pt-space-md pb-space-sm">
+        <label
+          class="block font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold mb-2"
+        >
+          Promotional Voucher
+        </label>
+        <div class="flex gap-2">
+          <div class="relative flex-1">
+            <input
+              class="w-full bg-surface-container-low uppercase tracking-wider rounded-xl px-3.5 py-2.5 font-label-md text-label-md text-on-surface font-semibold focus:outline-none focus:ring-2 focus:ring-primary/40"
+              placeholder="ENTER CODE"
+              type="text"
+              value="VERDANT25"
+            />
+            <span
+              class="absolute right-3 top-2.5 text-primary material-symbols-outlined text-[18px]"
+              >check_circle</span
+            >
+          </div>
+          <button
+            class="bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md px-4 py-2.5 rounded-xl font-semibold transition-colors"
+          >
+            Apply
+          </button>
+        </div>
+        <!-- Applied Voucher Tag -->
+        <div
+          class="mt-2.5 flex items-center justify-between bg-secondary-container/60 rounded-lg px-2.5 py-1.5 text-xs text-on-secondary-container"
+        >
+          <div class="flex items-center gap-1.5 font-medium">
+            <span class="material-symbols-outlined text-[16px]">local_offer</span>
+            <span>VERDANT25 applied (20% Off Storewide)</span>
+          </div>
+          <button class="hover:text-error transition-colors" title="Remove promo code">
+            <span class="material-symbols-outlined text-[14px]">close</span>
+          </button>
+        </div>
+      </div>
+      <!-- Price Calculations -->
+      <div class="flex flex-col gap-2.5 py-space-sm text-on-surface-variant font-body-sm text-body-sm">
+        <div class="flex items-center justify-between">
+          <span>Cart Subtotal (3 items)</span>
+          <span class="font-label-md text-label-md text-on-surface font-semibold">$128.00</span>
+        </div>
+        <div class="flex items-center justify-between text-tertiary">
+          <span class="flex items-center gap-1">
+            <span>Promo Discount (20%)</span>
+          </span>
+          <span class="font-label-md text-label-md font-semibold">-$25.60</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="flex items-center gap-1">
+            <span>Carbon-Neutral Ground Shipping</span>
+            <span
+              class="material-symbols-outlined text-[16px] text-primary"
+              title="Complimentary for orders above $50"
+              >info</span
+            >
+          </span>
+          <span class="font-label-md text-label-md text-primary font-bold">FREE</span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span>Estimated Climate Eco-Tax</span>
+          <span class="font-label-md text-label-md text-on-surface font-semibold">$8.20</span>
+        </div>
+      </div>
+      <!-- Total Due -->
+      <div class="pt-space-sm border-t border-surface-container">
+        <div class="flex items-baseline justify-between mb-1">
+          <div>
+            <span class="font-headline-sm text-headline-sm text-on-surface font-semibold">Total Amount</span>
+            <span class="block font-body-sm text-body-sm text-on-surface-variant text-xs"
+              >Includes all organic duties &amp; offsets</span
+            >
+          </div>
+          <div class="text-right">
+            <span class="font-headline-lg text-headline-lg text-primary font-bold tracking-tight"> $110.60 </span>
+            <span class="block font-label-sm text-label-sm text-outline line-through">$136.20</span>
+          </div>
+        </div>
+      </div>
+      <!-- Checkout CTA -->
+      <div class="pt-space-md flex flex-col gap-space-xs">
+        <button
+          class="w-full bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg py-3.5 px-6 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center gap-2 group active:scale-[0.99]"
+        >
+          <span
+            class="material-symbols-outlined text-[20px] transition-transform group-hover:scale-110"
+            >lock</span
+          >
+          <span>Mindful Checkout • $110.60</span>
+        </button>
+        <!-- Express Checkout Separator -->
+        <div class="relative flex py-2 items-center">
+          <div class="flex-grow border-t border-surface-container"></div>
+          <span class="flex-shrink mx-3 text-xs uppercase tracking-widest text-outline font-label-sm"
+            >Or express checkout</span
+          >
+          <div class="flex-grow border-t border-surface-container"></div>
+        </div>
+        <!-- Instant Payment Pill Buttons -->
+        <div class="grid grid-cols-2 gap-2">
+          <button
+            class="bg-[#5a31f4] hover:bg-[#4b27d4] text-white font-label-sm text-label-sm py-2.5 rounded-xl transition-colors font-bold flex items-center justify-center gap-1 shadow-sm"
+          >
+            <span>Shop</span><span class="font-black">Pay</span>
+          </button>
+          <button
+            class="bg-inverse-surface hover:bg-black text-on-primary font-label-sm text-label-sm py-2.5 rounded-xl transition-colors font-semibold flex items-center justify-center gap-1 shadow-sm"
+          >
+            <span class="material-symbols-outlined text-[16px]">file_download</span>
+            <span>Pay</span>
+          </button>
+          <button
+            class="bg-[#ffc439] hover:bg-[#f4bb34] text-[#111e18] font-label-sm text-label-sm py-2.5 rounded-xl transition-colors font-bold flex items-center justify-center gap-1 shadow-sm col-span-2"
+          >
+            <span class="italic font-black text-blue-900">Pay</span
+            ><span
+              class="italic font-black text-blue-600"
+              >Pal</span
+            >
+          </button>
+        </div>
+      </div>
+      <!-- Delivery Expectation -->
+      <div class="mt-space-md p-space-sm bg-surface-container-low rounded-xl flex items-start gap-2.5">
+        <span
+          class="material-symbols-outlined text-primary text-[20px] mt-0.5 flex-shrink-0"
+          >local_shipping</span
+        >
+        <div class="flex flex-col text-xs text-on-surface-variant font-body-sm text-body-sm leading-snug">
+          <span class="font-semibold text-on-surface font-label-md text-label-md">Estimated Arrival</span>
+          <span>Oct 24 – Oct 26 via Climate-Neutral Tracked Ground</span>
+        </div>
+      </div>
+      <!-- Trust Badges List -->
+      <div class="mt-space-sm pt-space-sm border-t border-surface-container flex flex-col gap-2">
+        <div class="flex items-center gap-2 text-xs text-on-surface-variant">
+          <span class="material-symbols-outlined text-[16px] text-primary">verified_user</span>
+          <span>256-Bit Encrypted Secure Checkout</span>
+        </div>
+        <div class="flex items-center gap-2 text-xs text-on-surface-variant">
+          <span class="material-symbols-outlined text-[16px] text-primary">spa</span>
+          <span>30-Day Pure Ritual Satisfaction Guarantee</span>
+        </div>
+        <div class="flex items-center gap-2 text-xs text-on-surface-variant">
+          <span class="material-symbols-outlined text-[16px] text-primary">nature</span>
+          <span>1% of order revenue donated directly to Reforestation</span>
+        </div>
+      </div>
+    </div>
+    <!-- Need Help Micro Card -->
+    <div
+      class="bg-surface-container-low rounded-xl p-space-sm flex items-center justify-between text-xs text-on-surface-variant"
+    >
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px] text-secondary">support_agent</span>
+        <span>Questions about formulations?</span>
+      </div>
+      <a class="font-label-sm text-label-sm text-primary font-semibold hover:underline" href="#">
+        Chat with Herbalist
+      </a>
+    </div>
+  </aside>
+</div>
+
+<form action="{{ routes.cart_url }}" method="post">
+  <table>
+    {% for item in cart.items %}
+      <tr>
+        <td>
+          {% render 'image', image: item.image, url: item.url %}
+        </td>
+        <td>
+          <p>{{ item.product.title }}</p>
+          {{ 'cart.remove' | t | link_to: item.url_to_remove }}
+        </td>
+        <td>
+          <input type="text" name="updates[]" value="{{ item.quantity }}">
+          <input type="submit" value="{{ 'cart.update' | t }}">
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+
+  <input type="submit" name="checkout" value="{{ 'cart.checkout' | t }}">
+</form>
