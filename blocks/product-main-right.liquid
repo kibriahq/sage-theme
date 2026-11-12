@@ -163,46 +163,51 @@
     </variant-picker>
   {% endunless %}
   <!-- Add to Cart + Quantity Stepper -->
-  <div class="flex flex-col sm:flex-row items-stretch gap-3 pt-2">
-    <!-- Stepper -->
-    <div
-      class="flex items-center justify-between bg-surface-container-lowest rounded-xl shadow-sm px-4 py-3 min-w-[120px]"
-    >
-      <button
-        aria-label="Decrease quantity"
-        class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center"
-        id="qty-minus"
-        type="button"
+  {% form 'product', product %}
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+    <input type="hidden" name="quantity" value="1">
+
+    <div class="flex flex-col sm:flex-row items-stretch gap-3 pt-2">
+      <!-- Stepper -->
+      <div
+        class="flex items-center justify-between bg-surface-container-lowest rounded-xl shadow-sm px-4 py-3 min-w-[120px]"
       >
-        <span class="material-symbols-outlined text-[18px]">remove</span>
+        <button
+          aria-label="Decrease quantity"
+          class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center"
+          id="qty-minus"
+          type="button"
+        >
+          <span class="material-symbols-outlined text-[18px]">remove</span>
+        </button>
+        <span class="font-label-lg text-label-lg text-on-surface font-semibold" id="qty-display">5</span>
+        <button
+          aria-label="Increase quantity"
+          class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center"
+          id="qty-plus"
+          type="button"
+        >
+          <span class="material-symbols-outlined text-[18px]">add</span>
+        </button>
+      </div>
+      <!-- Main Add to Cart Button -->
+      <button
+        class="flex-1 bg-primary text-on-primary hover:bg-primary-container font-label-lg text-label-lg py-3.5 px-6 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 font-medium hover:shadow-md active:scale-[0.99]"
+        id="add-to-cart-hero"
+        type="submit"
+      >
+        <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+        <span>Add to Cart</span>
       </button>
-      <span class="font-label-lg text-label-lg text-on-surface font-semibold" id="qty-display">5</span>
+      <!-- Buy It Now Button -->
       <button
-        aria-label="Increase quantity"
-        class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center"
-        id="qty-plus"
+        class="bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed font-label-lg text-label-lg py-3.5 px-6 rounded-xl transition-all font-semibold flex items-center justify-center"
         type="button"
       >
-        <span class="material-symbols-outlined text-[18px]">add</span>
+        Buy Now
       </button>
     </div>
-    <!-- Main Add to Cart Button -->
-    <button
-      class="flex-1 bg-primary text-on-primary hover:bg-primary-container font-label-lg text-label-lg py-3.5 px-6 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 font-medium hover:shadow-md active:scale-[0.99]"
-      id="add-to-cart-hero"
-      type="button"
-    >
-      <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
-      <span>Add to Cart</span>
-    </button>
-    <!-- Buy It Now Button -->
-    <button
-      class="bg-secondary-container text-on-secondary-container hover:bg-secondary-fixed font-label-lg text-label-lg py-3.5 px-6 rounded-xl transition-all font-semibold flex items-center justify-center"
-      type="button"
-    >
-      Buy Now
-    </button>
-  </div>
+  {% endform %}
 
   <!-- Stock Urgency Warning -->
   <div class="flex flex-col gap-1.5 pt-1">
